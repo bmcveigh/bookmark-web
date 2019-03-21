@@ -1,12 +1,18 @@
 import * as React from 'react';
 import PageContents from "./components/PageContents/PageContents";
 
+import {Provider} from "react-redux";
+
+import configureStore from './store';
+
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <PageContents />
-      </div>
+        <Provider store={configureStore()}>
+          <div className="App">
+            <PageContents />
+          </div>
+        </Provider>
     );
   }
 }
