@@ -1,0 +1,10 @@
+{
+  "generator-web-starter": {
+    "name": "bookmark-react",
+    "repository": "",
+    "ruby_version": "2.3.0",
+    "plugins": [
+      "web-starter-react:web-starter"
+    ]
+  }
+}
