@@ -1,31 +1,21 @@
-# IDE specific files
-.buildpath
-.project
-.settings
-.idea
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# Vagrant
-.vagrant
+# dependencies
+/node_modules
 
-# NPM
-node_modules
+# testing
+/coverage
 
-# Bower
-bower_components
+# production
+/build
 
-# OSX file
+# misc
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-/_site
-
-# Local configuration
-Vagrantfile.local
-settings.local.php
-
-# SASS cache
-.sass-cache
-
-# tmp
-/tmp
-# Webpack build directory
-/public
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
