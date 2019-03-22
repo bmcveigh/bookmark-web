@@ -6,13 +6,19 @@ import {AppState} from "../../store";
 import Category from "./Category/Category";
 
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
 import {getCategories} from "../../store/categories/actions";
+import {thunkGetCategories} from "../../store/thunks";
 
-class Categories extends React.Component {
+interface ICategoriesProps {
+    thunkGetCategories?: typeof thunkGetCategories;
+    categoryReducer?: object;
+    payload: [];
+}
+
+class Categories extends React.Component<ICategoriesProps> {
     public render() {
-        const data = getCategories();
-
-        const output = data.payload.map((category, key) => {
+        const output = this.props.payload.map((category, key) => {
             return (
                 <Category key={key} />
             );
@@ -32,7 +38,12 @@ const mapStateToProps = (state: AppState) => ({
     categoryReducer: state.categoryReducer
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    thunkGetCategories
+});
+
 export default connect(
     mapStateToProps,
-    { getCategories }
+    mapDispatchToProps,
+    getCategories
 )(Categories);
