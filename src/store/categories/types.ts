@@ -1,8 +1,6 @@
 // Describing the shape of the system's slice of state
 export interface IAddCategoryState {
-    loggedIn: boolean;
-    session: string;
-    userName: string;
+    category: object;
 }
 
 // Describing the different ACTION NAMES available

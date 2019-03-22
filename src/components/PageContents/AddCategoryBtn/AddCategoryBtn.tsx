@@ -6,13 +6,18 @@ import {addCategory} from "../../../store/categories/actions";
 import {AppState} from "../../../store";
 
 interface IAddCategoryProps {
-    addCategory: typeof addCategory;
+    addCategory: (category: object) => void;
 }
 
 class AddCategoryBtn extends React.Component<IAddCategoryProps> {
+    public handleClick(event: React.MouseEvent<HTMLElement>) {
+        addCategory({category: {}});
+    }
+
     public render() {
         return (
             <Button
+                onClick={this.handleClick}
                 color="primary">Add Category</Button>
         );
     }

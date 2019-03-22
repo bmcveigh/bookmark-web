@@ -1,9 +1,7 @@
 import { ADD_CATEGORY, IAddCategoryState, SystemActionTypes } from "./types";
 
 const initialState: IAddCategoryState = {
-  loggedIn: false,
-  session: "",
-  userName: ""
+  category: {}
 };
 
 export function categoryReducer(
