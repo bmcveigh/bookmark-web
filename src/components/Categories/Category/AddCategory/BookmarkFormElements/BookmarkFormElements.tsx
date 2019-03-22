@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FormGroup, Input, Label} from "reactstrap";
+import BookmarkFormElement from "./BookmarkFormElement/BookmarkFormElement";
 
 interface IAddCategoryState {
     linkElements?: any;
@@ -33,13 +33,11 @@ class BookmarkFormElements extends React.Component<{}, IAddCategoryState> {
             const labelId = `link-label--${key}`;
 
             return (
-                <FormGroup key={key}>
-                    <Label for={hrefId}>Path</Label>
-                    <Input id={hrefId} value={link.href}/>
-
-                    <Label for={labelId}>Label</Label>
-                    <Input id={labelId} value={link.label}/>
-                </FormGroup>
+                <BookmarkFormElement
+                    key={key}
+                    linkElement={link}
+                    hrefId={hrefId}
+                    labelId={labelId}/>
             );
         });
     }
