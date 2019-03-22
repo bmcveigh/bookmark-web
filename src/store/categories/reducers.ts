@@ -1,13 +1,13 @@
-import {ADD_CATEGORY, CategoryTypes, GET_CATEGORIES, IAddCategoryState} from "./types";
+import {ADD_CATEGORY, CategoryTypes, GET_CATEGORIES, ICategoriesState} from "./types";
 
-const initialState: IAddCategoryState = {
-  category: {}
+const initialState: ICategoriesState = {
+  categoryReducer: {}
 };
 
 export function categoryReducer(
     state = initialState,
     action: CategoryTypes
-): IAddCategoryState {
+): ICategoriesState {
   switch (action.type) {
     case ADD_CATEGORY: {
       return {

@@ -5,7 +5,7 @@ import thunkMiddleware from "redux-thunk";
 import { categoryReducer } from "./categories/reducers";
 
 const rootReducer = combineReducers({
-  category: categoryReducer
+  categoryReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

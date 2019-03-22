@@ -1,6 +1,6 @@
-import {ADD_CATEGORY, GET_CATEGORIES, IAddCategoryState} from "./types";
+import {ADD_CATEGORY, GET_CATEGORIES, ICategoriesState} from "./types";
 
-export function addCategory(category: IAddCategoryState) {
+export function addCategory(category: ICategoriesState) {
   return {
     payload: category,
     type: ADD_CATEGORY

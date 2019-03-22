@@ -29,7 +29,7 @@ class Categories extends React.Component {
 }
 
 const mapStateToProps = (state: AppState) => ({
-    category: state.category
+    categoryReducer: state.categoryReducer
 });
 
 export default connect(

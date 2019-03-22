@@ -11,7 +11,7 @@ interface IAddCategoryProps {
 
 class AddCategoryBtn extends React.Component<IAddCategoryProps> {
     public handleClick(event: React.MouseEvent<HTMLElement>) {
-        addCategory({category: {}});
+        addCategory({categoryReducer: {}});
     }
 
     public render() {
@@ -24,7 +24,7 @@ class AddCategoryBtn extends React.Component<IAddCategoryProps> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-    category: state.category
+    categoryReducer: state.categoryReducer
 });
 
 export default connect(
