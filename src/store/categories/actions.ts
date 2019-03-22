@@ -1,11 +1,4 @@
-import {ADD_CATEGORY, GET_CATEGORIES, ICategoriesState} from "./types";
-
-export function addCategory(category: ICategoriesState) {
-  return {
-    payload: category,
-    type: ADD_CATEGORY
-  };
-}
+import {ADD_CATEGORY, GET_CATEGORIES} from "./types";
 
 export function getCategories() {
   return {
@@ -31,4 +24,11 @@ export function getCategories() {
     ],
     type: GET_CATEGORIES
   };
+}
+
+export function flagNewCategory() {
+    return {
+        isAddCategoryFormVisible: true,
+        type: ADD_CATEGORY,
+    };
 }

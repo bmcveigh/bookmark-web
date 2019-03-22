@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {CardText} from "reactstrap";
 import Bookmark from "./Bookmark/Bookmark";
 
 class Bookmarks extends React.Component {
     public render() {
         return (
-            <CardText>
+            <div>
                 <Bookmark href={"#"} title={"Google"}/>
                 <Bookmark href={"#"} title={"Facebook"}/>
                 <Bookmark href={"#"} title={"Twitter"}/>
@@ -14,7 +13,7 @@ class Bookmarks extends React.Component {
                     href={"https://codesandbox.io/s/w02m7jm3q7"}
                     title="React Redux Tutorial with TypeScript"
                 />
-            </CardText>
+            </div>
         );
     }
 }

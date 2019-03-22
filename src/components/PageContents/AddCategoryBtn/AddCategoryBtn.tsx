@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 import {Button} from 'reactstrap';
-import {addCategory} from "../../../store/categories/actions";
+import {Dispatch} from "redux";
 
 import {AppState} from "../../../store";
+import {thunkAddCategory} from "../../../store/thunks";
 
 interface IAddCategoryProps {
-    addCategory: (category: object) => void;
+    addCategory?: typeof thunkAddCategory;
 }
 
 class AddCategoryBtn extends React.Component<IAddCategoryProps> {
-    public handleClick(event: React.MouseEvent<HTMLElement>) {
-        addCategory({categoryReducer: {}});
-    }
+    public handleClick = () => {
+        thunkAddCategory();
+    };
 
     public render() {
         return (
@@ -27,7 +28,11 @@ const mapStateToProps = (state: AppState) => ({
     categoryReducer: state.categoryReducer
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    thunkAddCategory
+});
+
 export default connect(
     mapStateToProps,
-    { addCategory }
+    mapDispatchToProps
 )(AddCategoryBtn);

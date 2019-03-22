@@ -9,7 +9,7 @@ interface IBookmarkProps {
 class Bookmark extends React.Component<IBookmarkProps> {
     public render() {
         return (
-            <p><a href={this.props.href}>{this.props.title}</a></p>
+            <div><a href={this.props.href}>{this.props.title}</a></div>
         );
     }
 }

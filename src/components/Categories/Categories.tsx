@@ -10,30 +10,29 @@ import {Dispatch} from "redux";
 import {getCategories} from "../../store/categories/actions";
 import {thunkGetCategories} from "../../store/thunks";
 
+import { ICategoryData } from "../../store/categories/types";
+
 interface ICategoriesProps {
     thunkGetCategories?: typeof thunkGetCategories;
     categoryReducer?: object;
     payload: [];
-}
-
-interface ICategoryData {
-    label: string;
-    href: string;
+    isAddCategoryFormVisible?: boolean;
 }
 
 class Categories extends React.Component<ICategoriesProps> {
     public render() {
         const output = this.props.payload.map((category: ICategoryData, key) => {
             return (
-                <Category key={key} categoryTitle={category.label} />
+                <Col md={3} key={key}>
+                    <Category categoryTitle={category.label} />
+                </Col>
             );
         });
 
         return (
             <Row>
-                <Col md={3}>
-                    {output}
-                </Col>
+                {output}
+                {this.props.isAddCategoryFormVisible ? <Category categoryTitle="New Category"/> : null}
             </Row>
         );
     }

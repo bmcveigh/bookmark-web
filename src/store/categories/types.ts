@@ -9,7 +9,13 @@ export const GET_CATEGORIES = "GET_CATEGORIES";
 
 interface ICategoryAction {
     type: typeof ADD_CATEGORY | typeof GET_CATEGORIES;
-    payload: ICategoriesState;
+    isAddCategoryFormVisible: ICategoriesState;
+    payload: [];
+}
+
+export interface ICategoryData {
+    label: string;
+    href: string;
 }
 
 export type CategoryTypes = ICategoryAction;

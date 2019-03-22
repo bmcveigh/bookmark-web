@@ -10,16 +10,14 @@ interface ICategoryProps {
 class Category extends React.Component<ICategoryProps> {
     public render() {
         return (
-            <div>
-                <Card>
-                    <CardBody>
-                        <CardTitle>{this.props.categoryTitle}</CardTitle>
-                        <CardText>
-                            <Bookmarks />
-                        </CardText>
-                    </CardBody>
-                </Card>
-            </div>
+            <Card>
+                <CardBody>
+                    <CardTitle>{this.props.categoryTitle}</CardTitle>
+                    <CardText>
+                        <Bookmarks />
+                    </CardText>
+                </CardBody>
+            </Card>
         );
     }
 }

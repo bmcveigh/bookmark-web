@@ -12,7 +12,7 @@ export function categoryReducer(
     case ADD_CATEGORY: {
       return {
         ...state,
-        ...action.payload
+        ...action.isAddCategoryFormVisible
       };
     }
     case GET_CATEGORIES: {
