@@ -1,5 +1,8 @@
 import * as React from 'react';
-import {Card, CardBody, CardText, CardTitle, Form, FormGroup, Input, Label} from "reactstrap";
+import {Card, CardBody, CardText, CardTitle, Form, Input} from "reactstrap";
+
+import './AddCategory.css';
+import BookmarkFormElements from "./BookmarkFormElements/BookmarkFormElements";
 
 interface IAddCategoryState {
     linkElements?: any;
@@ -28,26 +31,11 @@ class AddCategory extends React.Component<{}, IAddCategoryState> {
     }
 
     public render() {
-        const linkFormElements = this.state.linkElements.map((link: any, key: number) => {
-            const hrefId = `link-href--${key}`;
-            const labelId = `link-label--${key}`;
-
-            return (
-                <FormGroup key={key}>
-                    <Label for={hrefId}>Path</Label>
-                    <Input id={hrefId} value={link.href}/>
-
-                    <Label for={labelId}>Label</Label>
-                    <Input id={labelId} value={link.label}/>
-                </FormGroup>
-            );
-        });
-
         return (
-            <Card>
+            <Card className="add-category-card">
                 <CardBody>
                     <Form>
-                        <CardTitle>
+                        <CardTitle className="card-title">
                             Add a new category
                         </CardTitle>
                         <CardText>
@@ -55,7 +43,7 @@ class AddCategory extends React.Component<{}, IAddCategoryState> {
                                 type="text"
                                 placeholder={"Category Name"}
                             />
-                            {linkFormElements}
+                            <BookmarkFormElements/>
                         </CardText>
                     </Form>
                 </CardBody>
