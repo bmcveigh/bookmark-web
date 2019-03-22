@@ -10,26 +10,6 @@ interface IAddCategoryState {
 
 class AddCategory extends React.Component<{}, IAddCategoryState> {
 
-    constructor(props: Readonly<any>) {
-        super(props);
-        this.state = {
-          linkElements: [
-              {
-                  href: '#',
-                  label: 'Link 1'
-              },
-              {
-                  href: '#',
-                  label: 'Link 2'
-              },
-              {
-                  href: '#',
-                  label: 'Link 2',
-              }
-          ]
-        };
-    }
-
     public render() {
         return (
             <Card className="add-category-card">
@@ -43,7 +23,7 @@ class AddCategory extends React.Component<{}, IAddCategoryState> {
                                 type="text"
                                 placeholder={"Category Name"}
                             />
-                            <BookmarkFormElements/>
+                            <BookmarkFormElements />
                         </CardText>
                     </Form>
                 </CardBody>
