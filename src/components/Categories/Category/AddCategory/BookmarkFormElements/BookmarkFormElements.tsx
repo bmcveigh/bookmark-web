@@ -2,35 +2,32 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {Button} from "reactstrap";
 import {AppState} from "../../../../../store";
+import {addBookmark, loadBookmarks} from "../../../../../store/bookmarks/actions";
 import {getCategories} from "../../../../../store/categories/actions";
 import BookmarkFormElement from "./BookmarkFormElement/BookmarkFormElement";
 
-interface IAddCategoryState {
-    linkElements?: any;
+interface IBookmarkFormElementsProps {
+    bookmarkReducer: {
+        bookmarks: []
+    };
 }
 
-class BookmarkFormElements extends React.Component<{}, IAddCategoryState> {
+class BookmarkFormElements extends React.Component<IBookmarkFormElementsProps> {
 
     constructor(props: Readonly<any>) {
         super(props);
     }
 
+    public componentWillMount(): void {
+        loadBookmarks();
+    }
+
     public addAnotherBookmarkClick() {
-        // const linkElements = this.state.linkElements;
-        //
-        // if (!linkElements) {
-        //     return;
-        // }
-        //
-        // linkElements.push({
-        //     href: "#",
-        //     label: "Link " + linkElements.length
-        // });
-        // this.setState({linkElements});
+        addBookmark();
     }
 
     public render() {
-        const output = this.state.linkElements.map((link: any, key: number) => {
+        const output = this.props.bookmarkReducer.bookmarks.map((link: any, key: number) => {
             const hrefId = `link-href--${key}`;
             const labelId = `link-label--${key}`;
 
