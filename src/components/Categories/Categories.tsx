@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Col, Row} from "reactstrap";
 
 import {AppState} from "../../store";
+import AddCategory from "./Category/AddCategory/AddCategory";
 import Category from "./Category/Category";
 
 import {connect} from "react-redux";
@@ -33,7 +34,7 @@ class Categories extends React.Component<ICategoriesProps> {
         return (
             <Row>
                 {output}
-                {this.props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><Category categoryTitle="New Category"/></Col> : null}
+                {this.props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><AddCategory/></Col> : null}
             </Row>
         );
     }
