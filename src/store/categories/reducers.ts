@@ -1,4 +1,4 @@
-import { ADD_CATEGORY, IAddCategoryState, SystemActionTypes } from "./types";
+import {ADD_CATEGORY, CategoryTypes, GET_CATEGORIES, IAddCategoryState} from "./types";
 
 const initialState: IAddCategoryState = {
   category: {}
@@ -6,10 +6,16 @@ const initialState: IAddCategoryState = {
 
 export function categoryReducer(
     state = initialState,
-    action: SystemActionTypes
+    action: CategoryTypes
 ): IAddCategoryState {
   switch (action.type) {
     case ADD_CATEGORY: {
+      return {
+        ...state,
+        ...action.payload
+      };
+    }
+    case GET_CATEGORIES: {
       return {
         ...state,
         ...action.payload

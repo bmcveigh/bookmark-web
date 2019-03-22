@@ -5,10 +5,11 @@ export interface IAddCategoryState {
 
 // Describing the different ACTION NAMES available
 export const ADD_CATEGORY = "ADD_CATEGORY";
+export const GET_CATEGORIES = "GET_CATEGORIES";
 
-interface IAddCategoryAction {
-    type: typeof ADD_CATEGORY;
+interface ICategoryAction {
+    type: typeof ADD_CATEGORY | typeof GET_CATEGORIES;
     payload: IAddCategoryState;
 }
 
-export type SystemActionTypes = IAddCategoryAction;
+export type CategoryTypes = ICategoryAction;
