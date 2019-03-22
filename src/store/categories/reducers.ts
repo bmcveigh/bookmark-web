@@ -1,18 +1,18 @@
-import {ADD_CATEGORY, CategoryTypes, GET_CATEGORIES, ICategoriesState} from "./types";
+import {ADD_CATEGORY, GET_CATEGORIES, ICategoryTypes} from "./types";
 
-const initialState: ICategoriesState = {
-  categoryReducer: {}
+const initialState: ICategoryTypes = {
+  isAddCategoryFormVisible: false
 };
 
 export function categoryReducer(
     state = initialState,
-    action: CategoryTypes
-): ICategoriesState {
+    action: ICategoryTypes
+): any {
   switch (action.type) {
     case ADD_CATEGORY: {
       return {
         ...state,
-        ...action.isAddCategoryFormVisible
+        isAddCategoryFormVisible: action.isAddCategoryFormVisible
       };
     }
     case GET_CATEGORIES: {

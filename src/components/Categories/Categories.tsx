@@ -6,7 +6,6 @@ import {AppState} from "../../store";
 import Category from "./Category/Category";
 
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {getCategories} from "../../store/categories/actions";
 import {thunkGetCategories} from "../../store/thunks";
 
@@ -14,7 +13,9 @@ import { ICategoryData } from "../../store/categories/types";
 
 interface ICategoriesProps {
     thunkGetCategories?: typeof thunkGetCategories;
-    categoryReducer?: object;
+    categoryReducer: {
+        isAddCategoryFormVisible: boolean;
+    };
     payload: [];
     isAddCategoryFormVisible?: boolean;
 }
@@ -32,7 +33,7 @@ class Categories extends React.Component<ICategoriesProps> {
         return (
             <Row>
                 {output}
-                {this.props.isAddCategoryFormVisible ? <Category categoryTitle="New Category"/> : null}
+                {this.props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><Category categoryTitle="New Category"/></Col> : null}
             </Row>
         );
     }
@@ -42,12 +43,7 @@ const mapStateToProps = (state: AppState) => ({
     categoryReducer: state.categoryReducer
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    thunkGetCategories
-});
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
     getCategories
 )(Categories);
