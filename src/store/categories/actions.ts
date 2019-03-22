@@ -17,7 +17,7 @@ export function getCategories() {
             url: '#'
           }
         ],
-        title: 'Tech Companies'
+        label: 'Tech Companies'
       },
       {
         bookmarks: [
@@ -26,7 +26,7 @@ export function getCategories() {
             url: '#'
           }
         ],
-        title: 'Sports'
+        label: 'Sports'
       }
     ],
     type: GET_CATEGORIES

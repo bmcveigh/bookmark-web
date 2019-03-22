@@ -16,11 +16,16 @@ interface ICategoriesProps {
     payload: [];
 }
 
+interface ICategoryData {
+    label: string;
+    href: string;
+}
+
 class Categories extends React.Component<ICategoriesProps> {
     public render() {
-        const output = this.props.payload.map((category, key) => {
+        const output = this.props.payload.map((category: ICategoryData, key) => {
             return (
-                <Category key={key} />
+                <Category key={key} categoryTitle={category.label} />
             );
         });
 

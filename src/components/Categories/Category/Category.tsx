@@ -3,13 +3,17 @@ import {Card, CardBody,
     CardText, CardTitle} from "reactstrap";
 import Bookmarks from "./Bookmarks/Bookmarks";
 
-class Category extends React.Component {
+interface ICategoryProps {
+    categoryTitle: string
+}
+
+class Category extends React.Component<ICategoryProps> {
     public render() {
         return (
             <div>
                 <Card>
                     <CardBody>
-                        <CardTitle>Bookmark Category</CardTitle>
+                        <CardTitle>{this.props.categoryTitle}</CardTitle>
                         <CardText>
                             <Bookmarks />
                         </CardText>
