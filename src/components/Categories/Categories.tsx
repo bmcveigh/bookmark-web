@@ -48,3 +48,5 @@ export default connect(
     mapStateToProps,
     getCategories
 )(Categories);
+
+

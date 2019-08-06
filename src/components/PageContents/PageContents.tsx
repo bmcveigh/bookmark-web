@@ -1,19 +1,21 @@
 import * as React from 'react';
-import {Container} from 'reactstrap';
-import Categories from "../Categories/Categories";
-import AddCategoryBtn from "./AddCategoryBtn/AddCategoryBtn";
 
-class PageContents extends React.Component {
-    public render() {
-        return (
-            <Container fluid={true}>
-                <h1>Bookmarks</h1>
-                <AddCategoryBtn />
-                <br /><br />
-                <Categories />
-            </Container>
-        );
-    }
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Container} from 'reactstrap';
+
+import Categories from '../Categories/Categories';
+
+function PageContents() {
+    return (
+        <Container fluid={true}>
+            <h1>Bookmarks</h1>
+            <Router>
+                <div>
+                    <Route path="/" component={Categories}/>
+                </div>
+            </Router>
+        </Container>
+    );
 }
 
 export default PageContents;
