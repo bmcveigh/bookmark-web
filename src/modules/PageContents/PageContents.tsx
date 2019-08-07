@@ -3,7 +3,7 @@ import * as React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Container} from 'reactstrap';
 
-import Categories from "../Categories/Categories";
+import Categories from "../Bookmark/Categories";
 import Homepage from "../Homepage/containers/Homepage/Homepage";
 
 function PageContents() {

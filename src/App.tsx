@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PageContents from "./components/PageContents/PageContents";
+import PageContents from "./modules/PageContents/PageContents";
 
 import {Provider} from "react-redux";
 

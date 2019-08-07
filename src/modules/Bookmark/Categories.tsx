@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Col, Row} from "reactstrap";
 
 import {AppState} from "../../store";
+import SidebarMenu from "../Sidebar/components/SidebarMenu/SidebarMenu";
 import AddCategory from "./Category/AddCategory/AddCategory";
 import Category from "./Category/Category";
 
@@ -33,6 +34,7 @@ class Categories extends React.Component<ICategoriesProps> {
 
         return (
             <Row>
+                <SidebarMenu />
                 {output}
                 {this.props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><AddCategory/></Col> : null}
             </Row>
@@ -48,5 +50,3 @@ export default connect(
     mapStateToProps,
     getCategories
 )(Categories);
-
-
