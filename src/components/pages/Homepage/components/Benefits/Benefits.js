@@ -16,18 +16,18 @@ function Benefits() {
       rowClass: 'OrganizeBookmarks',
       title: 'Organize your bookmarks into spaces',
     },
-    // {
-    //   title: 'Create categories for your bookmarks',
-    //   description: 'Group related bookmarks into what we call categories. This allows you to group your bookmarks.',
-    //   rowClass: 'CreateCategories',
-    //   demoImg: createCategories,
-    // },
-    // {
-    //   title: 'Customize the appearance',
-    //   description: 'With over 40 themes to choose from, you can customize the theme of your bookmark spaces.',
-    //   rowClass: 'CustomizeAppearance',
-    //   demoImg: customizeAppearance,
-    // },
+    {
+      demoImg: createCategories,
+      description: 'Group related bookmarks into what we call categories. This allows you to group your bookmarks.',
+      rowClass: 'CreateCategories',
+      title: 'Create categories for your bookmarks',
+    },
+    {
+      demoImg: customizeAppearance,
+      description: 'With over 40 themes to choose from, you can customize the theme of your bookmark spaces.',
+      rowClass: 'CustomizeAppearance',
+      title: 'Customize the appearance',
+    },
   ];
 
   return (
