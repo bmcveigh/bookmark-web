@@ -4,15 +4,15 @@ import { faBookmark, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import './SidebarMenu.css';
-
 function SidebarMenu(props: any) {
+  const classes = require('./SidebarMenu.scss');
+
 
   // https://codepen.io/Kamilica/pen/XRbvaL
   const links = [
     {
       faIcon: faBookmark,
-      href: '/app',
+      href: '/',
       label: '',
       submenuItems: [],
     },
@@ -24,66 +24,66 @@ function SidebarMenu(props: any) {
     },
   ];
 
-  const output = links.map((link: any, lKey) => {
+  const output = links.map((link, lKey) => {
     return (
-      <Link
-        key={lKey}
-        to={link.href}
-      >
-        <li
-          className={"list-group-item pl-3 py-2"}
-          key={`li-${lKey}`}
-          // style={props.userPreferenceStyles.menuSidebarItem}
+        <Link
+            key={lKey}
+            to={link.href}
         >
-          <FontAwesomeIcon icon={link.faIcon} />
-          {
-            link.submenuItems.length ? (
-                <ul className="list-group flex-column d-inline-block submenu">
-                {
-                  link.submenuItems.map((submenuItem: any, smKey: any) => {
-                    return (
-                      <li
-                        key={smKey}
-                        className="list-group-item pl-4"
-                      >
-                        <Link to={submenuItem.href}>{submenuItem.label}</Link>
-                          <ul className="list-group flex-column d-inline-block sub-submenu">
-                          {
-                            submenuItem.subSubmenuItems.map((subSubmenuItem: any, ssmKey: any) => {
-                              return (
-                                <li
-                                  key={ssmKey}
-                                  className="list-group-item pl-4"
-                                >
-                                  <Link to={subSubmenuItem.href}>{subSubmenuItem.label}</Link>
-                                </li>
-                              );
-                            })
-                          }
-                        </ul>
-                      </li>
-                    );
-                  })
-                }
-              </ul>
-            ) : null
-          }
-        </li>
-      </Link>
+          <li
+              className={`${classes['list-group-item']} ${classes['pl-3']} ${classes['py-2']}`}
+              key={`li-${lKey}`}
+              // style={props.userPreferenceStyles.menuSidebarItem}
+          >
+            <FontAwesomeIcon icon={link.faIcon} />
+            {
+              link.submenuItems.length ? (
+                  <ul className={`${classes['list-group']} ${classes['flex-column']} ${classes['d-inline-block']} ${classes.submenu}`}>
+                    {
+                      link.submenuItems.map((submenuItem: any, smKey) => {
+                        return (
+                            <li
+                                key={smKey}
+                                className={`${classes['list-group-item']} ${classes['pl-4']}`}
+                            >
+                              <Link to={submenuItem.href}>{submenuItem.label}</Link>
+                              <ul className={`${classes['list-group']} ${classes['flex-column']} ${classes['d-inline-block']} ${classes['sub-submenu']}`}>
+                                {
+                                  submenuItem.subSubmenuItems.map((subSubmenuItem: any, ssmKey: any) => {
+                                    return (
+                                        <li
+                                            key={ssmKey}
+                                            className={`${classes['list-group-item']} ${classes['pl-4']}`}
+                                        >
+                                          <Link to={subSubmenuItem.href}>{subSubmenuItem.label}</Link>
+                                        </li>
+                                    );
+                                  })
+                                }
+                              </ul>
+                            </li>
+                        );
+                      })
+                    }
+                  </ul>
+              ) : null
+            }
+          </li>
+        </Link>
     );
   });
 
   return (
-    <div data-component={'sidebar'}>
-      <div className="sidebar">
-        <ul
-          className="list-group flex-column d-inline-block first-menu"
-          // style={props.userPreferenceStyles.menuSidebar}
-        >
-          {output}
-        </ul>
+      <div data-component={'sidebar'}>
+        <div className={`${classes.sidebar}`}>
+          <ul
+              className={`${classes['list-group']} ${classes['flex-column']} ${classes['d-inline-block']} ${classes['first-menu']}`}
+              // style={props.userPreferenceStyles.menuSidebar}
+          >
+            {output}
+          </ul>
+        </div>
       </div>
-    </div>
   );
 }
 

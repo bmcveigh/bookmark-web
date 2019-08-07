@@ -164,57 +164,34 @@ module.exports = {
               },
             ],
           },
-          // "postcss" loader applies autoprefixer to our CSS.
-          // "css" loader resolves paths in CSS and adds assets as dependencies.
-          // "style" loader turns CSS into JS modules that inject <style> tags.
-          // In production, we use a plugin to extract that CSS to a file, but
-          // in development "style" loader enables hot editing of CSS.
+
           {
-            test: /\.css$/,
+            // look for .css or .scss files
+            test: /\.(css|scss)$/,
+            // in the `src` directory
+            include: [path.resolve(paths.appSrc)],
             use: [
-              require.resolve('style-loader'),
               {
-                loader: require.resolve('css-loader'),
+                loader: 'style-loader',
+              },
+              {
+                loader: 'css-loader',
                 options: {
+                  discardDuplicates: true,
                   importLoaders: 1,
+                  // This enables local scoped CSS based in CSS Modules spec
+                  modules: true,
+                  // generates a unique name for each class (e.g. app__app___2x3cr)
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
                 },
               },
               {
-                loader: require.resolve('postcss-loader'),
+                loader: 'sass-loader',
                 options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
+                  sourceMap: true,
                 },
               },
             ],
-          },
-
-          {
-            test: /\.css$/,
-            include: path.join(__dirname, 'src/components'),
-            use: [
-              'style-loader',
-              {
-                loader: 'typings-for-css-modules-loader',
-                options: {
-                  modules: true,
-                  namedExport: true
-                }
-              }
-            ]
           },
 
           // "file" loader makes sure those assets get served by WebpackDevServer.
