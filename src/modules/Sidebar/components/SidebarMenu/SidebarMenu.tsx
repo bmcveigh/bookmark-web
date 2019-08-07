@@ -74,14 +74,16 @@ function SidebarMenu(props: any) {
   });
 
   return (
-      <div data-component={'sidebar'}>
-        <div className={`${classes.sidebar}`}>
-          <ul
-              className={`${classes['list-group']} ${classes['flex-column']} ${classes['d-inline-block']} ${classes['first-menu']}`}
-              // style={props.userPreferenceStyles.menuSidebar}
-          >
-            {output}
-          </ul>
+      <div className={classes.SidebarMenu}>
+        <div data-component={'sidebar'}>
+          <div className={`${classes.sidebar}`}>
+            <ul
+                className={`${classes['list-group']} ${classes['flex-column']} ${classes['d-inline-block']} ${classes['first-menu']}`}
+                // style={props.userPreferenceStyles.menuSidebar}
+            >
+              {output}
+            </ul>
+          </div>
         </div>
       </div>
   );
