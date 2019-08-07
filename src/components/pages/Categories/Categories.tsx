@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import {Col, Row} from "reactstrap";
 
-import {AppState} from "../../store";
+import {AppState} from "../../../store";
 import AddCategory from "./Category/AddCategory/AddCategory";
 import Category from "./Category/Category";
 
 import {connect} from "react-redux";
-import {getCategories} from "../../store/categories/actions";
-import {thunkGetCategories} from "../../store/thunks";
+import {getCategories} from "../../../store/categories/actions";
+import {thunkGetCategories} from "../../../store/thunks";
 
-import { ICategoryData } from "../../store/categories/types";
+import { ICategoryData } from "../../../store/categories/types";
 
 interface ICategoriesProps {
     thunkGetCategories?: typeof thunkGetCategories;
