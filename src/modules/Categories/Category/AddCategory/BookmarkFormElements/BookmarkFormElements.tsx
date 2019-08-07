@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from "react-redux";
 import {Button} from "reactstrap";
-import {AppState} from "../../../../../../store";
-import {addBookmark, loadBookmarks} from "../../../../../../store/bookmarks/actions";
-import {getCategories} from "../../../../../../store/categories/actions";
+import {AppState} from "../../../../../store";
+import {addBookmark, loadBookmarks} from "../../../../../store/bookmarks/actions";
+import {getCategories} from "../../../../../store/categories/actions";
 import BookmarkFormElement from "./BookmarkFormElement/BookmarkFormElement";
 
 interface IBookmarkFormElementsProps {
