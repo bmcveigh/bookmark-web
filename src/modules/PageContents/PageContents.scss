@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import '~sierra-library/lib/index';
 
 .PageContents {
-    h1 {
-        font-family: 'Roboto', sans-serif;
-    }
+    font-family: 'Roboto', sans-serif;
 }
