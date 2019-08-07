@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Col, Row} from "reactstrap";
 
 import {AppState} from "../../store";
-import SidebarMenuContainer from "../Sidebar/components/SidebarMenuContainer/SidebarMenuContainer";
+import SidebarMenuContainer from "../Sidebar/containers/SidebarMenuContainer/SidebarMenuContainer";
 import AddCategory from "./Category/AddCategory/AddCategory";
 import Category from "./Category/Category";
 
