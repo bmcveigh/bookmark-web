@@ -1,13 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 
 import { connect } from 'react-redux';
 
 import { Col, Row } from 'reactstrap';
 
-import classes from './Homepage.css';
-import Pricing from '../../components/Pricing/Pricing';
-import Heading from '../../components/Heading/Heading';
-import Benefits from '../../components/Benefits/Benefits';
+import * as classes './Homepage.css';
+
+import * as Benefits from '../../components/Benefits/Benefits';
+import * as Heading from '../../components/Heading/Heading';
+import * as Pricing from '../../components/Pricing/Pricing';
 
 function Homepage(props) {
   return (
