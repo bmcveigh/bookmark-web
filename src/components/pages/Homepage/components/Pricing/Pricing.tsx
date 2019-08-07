@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Card, Col, Jumbotron, Row } from 'reactstrap';
 
-import classes from './Pricing.css';
-
 function Pricing() {
+  const classes = require('./Pricing.css');
+
   const plans = {
     availableFeatures: {
       createMultipleBookmarkSpaces: 'Create multiple bookmark spaces',

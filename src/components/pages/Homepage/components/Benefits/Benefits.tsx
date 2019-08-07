@@ -1,14 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Card, CardBody, CardHeader, CardText, Col, Jumbotron, Row } from 'reactstrap';
-
-import classes from './Benefits.css';
 
 import createCategories from './img/createCategories.png';
 import customizeAppearance from './img/customizeAppearance.png';
 import organizeSpaces from './img/organizeSpaces.png';
 
 function Benefits() {
+  const classes = require('./Benefits.css');
+
   const benefits = [
     {
       demoImg: organizeSpaces,
