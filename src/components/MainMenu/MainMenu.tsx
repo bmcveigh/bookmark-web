@@ -40,6 +40,14 @@ export default class MainMenu extends React.Component<{}, IState> {
                         <Nav className="ml-auto" navbar={true}>
                             <NavItem>
                                 <Link
+                                    to={"/app"}
+                                    className={"nav-link"}
+                                >
+                                    View Bookmarks
+                                </Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link
                                     to={"/user/logout"}
                                     className={"nav-link"}
                                 >
