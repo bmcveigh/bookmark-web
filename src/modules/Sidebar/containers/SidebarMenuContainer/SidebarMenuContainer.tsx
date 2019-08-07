@@ -7,10 +7,14 @@ interface ISidebarMenuContainer {
 }
 
 function SidebarMenuContainer(props: ISidebarMenuContainer) {
-  return (
-      <div>
-        <SidebarMenu/>
-        {props.children}
+  const classes = require('./SidebarMenuContainer.scss');
+
+    return (
+      <div className={classes.SidebarMenuContainer}>
+        <SidebarMenu />
+          <div className={classes.Content}>
+              {props.children}
+          </div>
       </div>
   );
 }
