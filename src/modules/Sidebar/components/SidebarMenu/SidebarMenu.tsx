@@ -12,7 +12,7 @@ function SidebarMenu(props: any) {
   const links = [
     {
       faIcon: faBookmark,
-      href: '/',
+      href: '/app',
       label: '',
       submenuItems: [],
     },
