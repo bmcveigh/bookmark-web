@@ -11,7 +11,6 @@ function PageContents() {
 
     return (
         <Container fluid={true} className={classes.PageContents}>
-            <h1>Bookmarks</h1>
             <Router>
                 <Route path="/" exact={true} component={Homepage} />
                 <Route path="/app" component={Categories} />
