@@ -6,10 +6,14 @@ import SidebarMenuContainer from "../../../Sidebar/containers/SidebarMenuContain
 import UserThemeSettingsForm from "../../forms/UserThemeSettingsForm/UserThemeSettingsForm";
 
 function UserThemeSettingsPage() {
+  const classes = require('./UserThemeSettingsPage.scss');
+
   return (
-    <SidebarMenuContainer>
-      <UserThemeSettingsForm />
-    </SidebarMenuContainer>
+      <SidebarMenuContainer>
+        <div className={classes.UserThemeSettingsPageContents}>
+          <UserThemeSettingsForm />
+        </div>
+      </SidebarMenuContainer>
   );
 }
 
