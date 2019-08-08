@@ -14,7 +14,6 @@ function Button(props: IButtonProps) {
     <button
       className={`button button--small ${classes.Button}`}
       onClick={props.click}
-      // style={props.userPreferenceStyles.button}
     >
       {props.children}
     </button>
