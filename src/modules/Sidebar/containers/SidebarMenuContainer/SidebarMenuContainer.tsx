@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Container} from "reactstrap";
 
 import SidebarMenu from '../../components/SidebarMenu/SidebarMenu';
 
@@ -12,9 +13,9 @@ function SidebarMenuContainer(props: ISidebarMenuContainer) {
     return (
       <div className={classes.SidebarMenuContainer}>
         <SidebarMenu />
-          <div className={classes.Content}>
-              {props.children}
-          </div>
+        <Container fluid={true} className={`${classes.PageContents}`}>
+          {props.children}
+        </Container>
       </div>
   );
 }

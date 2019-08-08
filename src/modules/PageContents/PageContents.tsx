@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {Container} from 'reactstrap';
 import MainMenu from "../../components/blocks/MainMenu/MainMenu";
 
 import BookmarkListPage from "../Bookmark/pages/BookmarkListPage/BookmarkListPage";
@@ -12,11 +11,11 @@ function PageContents() {
 
     return (
             <Router>
-                <MainMenu />
-                <Container fluid={true} className={classes.PageContents}>
+                <div className={classes.PageContents}>
+                    <MainMenu />
                     <Route path="/" exact={true} component={Homepage} />
                     <Route path="/app" component={BookmarkListPage} />
-                </Container>
+                </div>
             </Router>
     );
 }
