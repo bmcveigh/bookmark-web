@@ -12,7 +12,7 @@ function Button(props: IButtonProps) {
 
   return (
     <button
-      className={`button button--small ${classes.Button}`}
+      className={`${classes.button} ${classes['button--small']} ${classes.Button}`}
       onClick={props.click}
     >
       {props.children}
