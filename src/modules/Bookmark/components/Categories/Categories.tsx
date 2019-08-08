@@ -4,12 +4,11 @@ import {connect} from "react-redux";
 
 import {Col, Row} from "reactstrap";
 
-import {AppState} from "../../store";
-import {getCategories} from "../../store/categories/actions";
+import {AppState} from "../../../../store";
+import {getCategories} from "../../../../store/categories/actions";
 
-import {ICategoryData} from "../../store/categories/types";
-import {thunkGetCategories} from "../../store/thunks";
-import SidebarMenuContainer from "../Sidebar/containers/SidebarMenuContainer/SidebarMenuContainer";
+import {ICategoryData} from "../../../../store/categories/types";
+import {thunkGetCategories} from "../../../../store/thunks";
 import AddCategory from "./Category/AddCategory/AddCategory";
 import Category from "./Category/Category";
 
@@ -32,12 +31,10 @@ function Categories(props: ICategoriesProps) {
     });
 
     return (
-        <SidebarMenuContainer>
-            <Row>
-                {output}
-                {props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><AddCategory/></Col> : null}
-            </Row>
-        </SidebarMenuContainer>
+        <Row>
+            {output}
+            {props.categoryReducer.isAddCategoryFormVisible ? <Col md={3}><AddCategory/></Col> : null}
+        </Row>
     );
 }
 
