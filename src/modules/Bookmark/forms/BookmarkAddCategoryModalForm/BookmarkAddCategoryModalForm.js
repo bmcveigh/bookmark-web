@@ -27,7 +27,7 @@ class BookmarkAddCategoryModalForm extends React.Component {
   render() {
     return (
       <AppModal
-        className={"modal"}
+        className={"app-modal"}
         confirmHandler={() => this.handleClick()}
         title="Add category"
       >

@@ -1,4 +1,13 @@
-.ModalHeader,
-.ModalBody {
-  color: #6c757d;
+//
+// Custom styling for bootstrap modal.
+//
+
+.AppModal {
+  top: 20%;
+
+  .ModalHeader,
+  .ModalBody {
+    color: #6c757d;
+  }
+
 }

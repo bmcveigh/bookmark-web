@@ -52,7 +52,7 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
-                    className={this.props.className}
+                    className={`${classes.AppModal} ${this.props.className}`}
                 >
                   <ModalHeader
                       className={classes.ModalHeader}
