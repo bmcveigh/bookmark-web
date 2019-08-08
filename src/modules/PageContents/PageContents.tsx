@@ -5,6 +5,7 @@ import MainMenu from "../../components/blocks/MainMenu/MainMenu";
 
 import BookmarkListPage from "../Bookmark/pages/BookmarkListPage/BookmarkListPage";
 import Homepage from "../Homepage/containers/Homepage/Homepage";
+import UserThemeSettingsPage from "../Theme/pages/UserThemeSettingsPage/UserThemeSettingsPage";
 
 function PageContents() {
     const classes = require('./PageContents.scss');
@@ -14,7 +15,8 @@ function PageContents() {
                 <div className={classes.PageContents}>
                     <MainMenu />
                     <Route path="/" exact={true} component={Homepage} />
-                    <Route path="/app" component={BookmarkListPage} />
+                    <Route path="/app" exact={true} component={BookmarkListPage} />
+                    <Route path="/app/user/profile/appearance" exact={true} component={UserThemeSettingsPage} />
                 </div>
             </Router>
     );
