@@ -6,6 +6,7 @@ import {Col, Row} from "reactstrap";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
+import Categories from "./Categories/Categories";
 
 interface ICategoriesState {
     viewMode: string;
@@ -14,13 +15,13 @@ interface ICategoriesState {
 const CATEGORY_VIEW = 'CATEGORY_VIEW';
 const TABLE_VIEW = 'TABLE_VIEW';
 
-class Categories extends React.Component<{}, ICategoriesState> {
+class BookmarkContent extends React.Component<{}, ICategoriesState> {
     public componentWillMount(): void {
         this.setState({viewMode: CATEGORY_VIEW});
     }
 
     public render() {
-        const classes = require('./Categories.scss');
+        const classes = require('./BookmarkContent.scss');
         const self = this;
 
         const viewModeClick = (event: any) => {
@@ -51,17 +52,13 @@ class Categories extends React.Component<{}, ICategoriesState> {
                         </a>
                     </Col>
                 </Row>
-                <Row>
-                    <div className={classes.Content}>
-                        <Col md={12}>
-                            {this.state.viewMode === CATEGORY_VIEW ?
-                                <span>Category View here</span> : <span>Table View here</span>}
-                        </Col>
-                    </div>
-                </Row>
+                <div className={classes.Content}>
+                    {this.state.viewMode === CATEGORY_VIEW ?
+                        <Categories /> : <span>Table View here</span>}
+                </div>
             </div>
         );
     }
 }
 
-export default connect()(Categories);
+export default connect()(BookmarkContent);
