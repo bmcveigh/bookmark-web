@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Col, Row} from "reactstrap";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
+import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
 
 function Categories() {
     const classes = require('./Categories.scss');
@@ -17,6 +18,7 @@ function Categories() {
             >
                 <Col md={8}>
                     <BookmarkAddCategoryModalForm params={{}} />
+                    <BookmarkAddSpaceModalForm />
                 </Col>
             </Row>
             <div className={classes.Content}>
