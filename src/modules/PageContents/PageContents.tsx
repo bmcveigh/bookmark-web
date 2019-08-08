@@ -11,15 +11,14 @@ function PageContents() {
     const classes = require('./PageContents.scss');
 
     return (
-        <Container fluid={true} className={classes.PageContents}>
             <Router>
                 <MainMenu />
-                <Route path="/" exact={true} component={Homepage} />
-                <Route path="/app" component={Categories} />
+                <Container fluid={true} className={classes.PageContents}>
+                    <Route path="/" exact={true} component={Homepage} />
+                    <Route path="/app" component={Categories} />
+                </Container>
             </Router>
-        </Container>
     );
 }
 
 export default PageContents;
-

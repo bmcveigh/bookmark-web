@@ -32,9 +32,17 @@ export default class MainMenu extends React.Component<{}, IState> {
     }
 
     public render() {
+        const classes = require('./MainMenu.scss');
+
         return (
             <div>
-                <Navbar color="light" light={true} expand="md">
+                <Navbar
+                    color="light"
+                    light={true}
+                    fixed="top"
+                    expand="md"
+                    className={classes.Navbar}
+                >
                     <NavbarBrand href={"/"}>Bookmark Buddy</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar={true}>
                         <Nav className="ml-auto" navbar={true}>
