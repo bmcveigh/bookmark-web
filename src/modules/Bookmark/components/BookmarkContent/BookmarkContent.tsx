@@ -6,6 +6,7 @@ import {Col, Row} from "reactstrap";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
+import BookmarkTableView from "./BookmarkTableView/BookmarkTableView";
 import Categories from "./Categories/Categories";
 
 import Tabs from "../../../../components/elements/Tabs/Tabs";
@@ -69,7 +70,7 @@ class BookmarkContent extends React.Component<{}, ICategoriesState> {
                 <div className={classes.Content}>
                     <Tabs data={bkSpaceTabsData} />
                     {this.state.viewMode === CATEGORY_VIEW ?
-                        <Categories /> : <span>Table View here</span>}
+                        <Categories /> : <BookmarkTableView />}
                 </div>
             </div>
         );
