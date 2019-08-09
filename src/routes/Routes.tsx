@@ -9,11 +9,9 @@ import UserThemeSettingsPage from "../modules/Theme/pages/UserThemeSettingsPage/
 import UserProfilePage from "../modules/User/pages/UserProfilePage/UserProfilePage";
 
 function Routes() {
-    const classes = require('./Routes.scss');
-
     return (
             <Router>
-                <div className={classes.PageContents}>
+                <div>
                     <MainMenu />
                     <Route path="/" exact={true} component={Homepage} />
                     <Route path="/app" exact={true} component={BookmarkListPage} />
