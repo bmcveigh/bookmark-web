@@ -1,33 +1,30 @@
 import * as React from 'react';
 
-import { connect } from 'react-redux';
-import Tabs from "../../../../components/elements/Tabs/Tabs";
+import {connect} from 'react-redux';
 
 import SidebarMenuContainer from "../../../Sidebar/containers/SidebarMenuContainer/SidebarMenuContainer";
 import UserThemeSettingsForm from "../../forms/UserThemeSettingsForm/UserThemeSettingsForm";
 
-function UserThemeSettingsPage() {
-  const classes = require('./UserThemeSettingsPage.scss');
+import Tabs from "../../../../components/elements/Tabs/Tabs";
 
-  const tabData = [
-      {
-          href: '/app/user/profile',
-          label: 'Profile'
-      },
-      {
-          href: '/app/user/profile/appearance',
-          label: 'Theme Settings'
-      }
-  ];
+function UserThemeSettingsPage(props: any) {
+    const classes = require('./UserThemeSettingsPage.scss');
+    const siteConfig = props.siteConfig;
 
-  return (
-      <SidebarMenuContainer>
-        <div className={classes.UserThemeSettingsPageContents}>
-            <Tabs data={tabData} />
-          <UserThemeSettingsForm />
-        </div>
-      </SidebarMenuContainer>
-  );
+    return (
+        <SidebarMenuContainer>
+            <div className={classes.UserThemeSettingsPageContents}>
+                <Tabs data={siteConfig.tabData.userProfilePages}/>
+                <UserThemeSettingsForm/>
+            </div>
+        </SidebarMenuContainer>
+    );
 }
 
-export default connect()(UserThemeSettingsPage);
+function mapStateToProps(state: any) {
+    return {
+        siteConfig: state.siteConfigReducer.siteConfig,
+    };
+}
+
+export default connect(mapStateToProps)(UserThemeSettingsPage);
