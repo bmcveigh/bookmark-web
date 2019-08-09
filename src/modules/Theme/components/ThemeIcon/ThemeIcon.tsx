@@ -6,6 +6,12 @@ interface IThemeIconProps {
   };
 }
 
+/**
+ * Generates an SVG image showing what a particular theme will look like.
+ *
+ * @param props
+ * @constructor
+ */
 function ThemeIcon(props: IThemeIconProps) {
   const theme = props.theme;
   const colorsRaw = theme.colors.split(/,/g);
