@@ -13,7 +13,7 @@ function SidebarMenuContainer(props: ISidebarMenuContainer) {
     return (
       <div className={classes.SidebarMenuContainer}>
         <SidebarMenu />
-        <Container fluid={true} className={`${classes.PageContents}`}>
+        <Container fluid={true} className={`${classes.Content}`}>
           {props.children}
         </Container>
       </div>

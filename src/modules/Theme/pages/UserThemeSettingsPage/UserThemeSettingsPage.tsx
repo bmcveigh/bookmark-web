@@ -8,12 +8,11 @@ import UserThemeSettingsForm from "../../forms/UserThemeSettingsForm/UserThemeSe
 import Tabs from "../../../../components/elements/Tabs/Tabs";
 
 function UserThemeSettingsPage(props: any) {
-    const classes = require('./UserThemeSettingsPage.scss');
     const siteConfig = props.siteConfig;
 
     return (
         <SidebarMenuContainer>
-            <div className={classes.UserThemeSettingsPageContents}>
+            <div>
                 <Tabs data={siteConfig.tabData.userProfilePages}/>
                 <UserThemeSettingsForm/>
             </div>

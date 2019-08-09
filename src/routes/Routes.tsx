@@ -6,6 +6,7 @@ import MainMenu from "../components/blocks/MainMenu/MainMenu";
 import BookmarkListPage from "../modules/Bookmark/pages/BookmarkListPage/BookmarkListPage";
 import Homepage from "../modules/Homepage/containers/Homepage/Homepage";
 import UserThemeSettingsPage from "../modules/Theme/pages/UserThemeSettingsPage/UserThemeSettingsPage";
+import UserProfilePage from "../modules/User/pages/UserProfilePage/UserProfilePage";
 
 function Routes() {
     const classes = require('./Routes.scss');
@@ -17,6 +18,7 @@ function Routes() {
                     <Route path="/" exact={true} component={Homepage} />
                     <Route path="/app" exact={true} component={BookmarkListPage} />
                     <Route path="/app/space/*" exact={true} component={BookmarkListPage} />
+                    <Route path="/app/user/profile" exact={true} component={UserProfilePage} />
                     <Route path="/app/user/profile/appearance" exact={true} component={UserThemeSettingsPage} />
                 </div>
             </Router>

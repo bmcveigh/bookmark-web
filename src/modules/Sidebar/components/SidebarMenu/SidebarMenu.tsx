@@ -18,7 +18,7 @@ function SidebarMenu(props: any) {
     },
     {
       faIcon: faUser,
-      href: '/user/profile',
+      href: '/app/user/profile',
       label: '',
       submenuItems: [],
     },
