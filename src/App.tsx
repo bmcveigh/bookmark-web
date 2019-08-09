@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PageContents from "./modules/PageContents/PageContents";
+import Routes from "./routes/Routes";
 
 import {Provider} from "react-redux";
 
@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
         <Provider store={configureStore()}>
           <div className="App">
-            <PageContents />
+            <Routes />
           </div>
         </Provider>
     );

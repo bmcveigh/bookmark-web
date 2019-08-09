@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import MainMenu from "../../components/blocks/MainMenu/MainMenu";
+import MainMenu from "../components/blocks/MainMenu/MainMenu";
 
-import BookmarkListPage from "../Bookmark/pages/BookmarkListPage/BookmarkListPage";
-import Homepage from "../Homepage/containers/Homepage/Homepage";
-import UserThemeSettingsPage from "../Theme/pages/UserThemeSettingsPage/UserThemeSettingsPage";
+import BookmarkListPage from "../modules/Bookmark/pages/BookmarkListPage/BookmarkListPage";
+import Homepage from "../modules/Homepage/containers/Homepage/Homepage";
+import UserThemeSettingsPage from "../modules/Theme/pages/UserThemeSettingsPage/UserThemeSettingsPage";
 
-function PageContents() {
-    const classes = require('./PageContents.scss');
+function Routes() {
+    const classes = require('./Routes.scss');
 
     return (
             <Router>
@@ -23,4 +23,4 @@ function PageContents() {
     );
 }
 
-export default PageContents;
+export default Routes;
