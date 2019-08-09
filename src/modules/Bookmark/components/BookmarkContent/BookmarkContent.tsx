@@ -8,6 +8,8 @@ import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalFo
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
 import Categories from "./Categories/Categories";
 
+import Tabs from "../../../../components/elements/Tabs/Tabs";
+
 interface ICategoriesState {
     viewMode: string;
 }
@@ -32,6 +34,18 @@ class BookmarkContent extends React.Component<{}, ICategoriesState> {
             });
         };
 
+        // todo: refactor this process data from the back-end.
+        const bkSpaceTabsData: object[] = [
+            {
+                href: `/app/space/default`,
+                label: `Personal (default space)`,
+            },
+            {
+                href: `/app/space/1`,
+                label: `Work`,
+            }
+        ];
+
         return (
             <div>
                 <Row
@@ -53,6 +67,7 @@ class BookmarkContent extends React.Component<{}, ICategoriesState> {
                     </Col>
                 </Row>
                 <div className={classes.Content}>
+                    <Tabs data={bkSpaceTabsData} />
                     {this.state.viewMode === CATEGORY_VIEW ?
                         <Categories /> : <span>Table View here</span>}
                 </div>

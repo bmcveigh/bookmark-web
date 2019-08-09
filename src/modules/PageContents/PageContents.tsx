@@ -16,6 +16,7 @@ function PageContents() {
                     <MainMenu />
                     <Route path="/" exact={true} component={Homepage} />
                     <Route path="/app" exact={true} component={BookmarkListPage} />
+                    <Route path="/app/space" component={BookmarkListPage} />
                     <Route path="/app/user/profile/appearance" exact={true} component={UserThemeSettingsPage} />
                 </div>
             </Router>
