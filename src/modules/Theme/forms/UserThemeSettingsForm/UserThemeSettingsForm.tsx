@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {connect} from 'react-redux';
-import {thunkGetThemeConfig} from "../../../../store/thunks";
+import {fetchUserThemeConfig} from "../../../../store/userTheme/actions";
 import ThemeIcon from "../../components/ThemeIcon/ThemeIcon";
 
 interface IUserSettingsFormProps {
@@ -12,7 +12,7 @@ interface IUserSettingsFormProps {
 class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
     public constructor(props: any) {
         super(props);
-        thunkGetThemeConfig(props.dispatch);
+        fetchUserThemeConfig(props.dispatch);
     }
 
     public handleClick = () => {

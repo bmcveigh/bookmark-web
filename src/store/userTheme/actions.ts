@@ -1,14 +1,17 @@
 import {GET_USER_THEME_CONFIG} from "./types";
 
-import store from '../index';
+interface IDispatch {
+    data: any;
+    type: string;
+}
 
-export function getUserThemeConfig() {
+export function fetchUserThemeConfig(dispatch: (object: IDispatch) => void) {
     const API_URL = 'http://bookmark-api.docksal';
 
-    return fetch(`${API_URL}/api/bookmark_api_user_theme/bookmark_api_user_theme`)
-        .then(response => response.json().then(json => ({ json, response })))
+    fetch(`${API_URL}/api/bookmark_api_user_theme/bookmark_api_user_theme`)
+        .then(response => response.json().then(json => ({json, response})))
         .then((value) => {
-            store().dispatch({
+            dispatch({
                 data: value,
                 type: GET_USER_THEME_CONFIG
             });
