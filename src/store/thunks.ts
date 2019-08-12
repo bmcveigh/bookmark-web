@@ -1,9 +1,14 @@
-import { Action } from "redux";
-import { ThunkAction } from "redux-thunk";
+import {GET_USER_THEME_CONFIG} from "./userTheme/types";
 
-import { AppState } from "./index";
-import {getSiteConfig} from "./siteConfig/actions";
+const API_URL = 'http://bookmark-api.docksal';
 
-export const thunkGetSiteConfig = (): ThunkAction<void, AppState, null, Action<string>> => async dispatch => {
-    dispatch(getSiteConfig());
+export const thunkGetThemeConfig = (dispatcher: (object: any) => void) => {
+    fetch(`${API_URL}/api/bookmark_api_user_theme/bookmark_api_user_theme`)
+        .then(response => response.json().then(json => ({json, response})))
+        .then((value) => {
+            dispatcher({
+                data: value,
+                type: GET_USER_THEME_CONFIG
+            });
+        });
 };
