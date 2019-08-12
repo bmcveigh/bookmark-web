@@ -5,11 +5,13 @@ import thunkMiddleware from "redux-thunk";
 import { bookmarkReducer } from "./bookmarks/reducers";
 import { categoryReducer } from "./categories/reducers";
 import {siteConfigReducer} from "./siteConfig/reducers";
+import {userThemeReducer} from "./userTheme/reducers";
 
 const rootReducer = combineReducers({
   bookmarkReducer,
   categoryReducer,
   siteConfigReducer,
+  userThemeReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
