@@ -8,7 +8,7 @@ interface IDispatch {
 export function fetchUserThemeConfig(dispatch: (object: IDispatch) => void) {
     const API_URL = 'http://bookmark-api.docksal';
 
-    fetch(`${API_URL}/api/bookmark_api_user_theme/bookmark_api_user_theme`)
+    fetch(`${API_URL}/api/user-themes`)
         .then(response => response.json().then(json => ({json, response})))
         .then((value) => {
             dispatch({

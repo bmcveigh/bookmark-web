@@ -75,8 +75,6 @@ class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
                 <div className="row">
                     {
                         themes.map((theme: any, key: any) => {
-                            theme = theme.attributes;
-
                             const isChecked = theme.machineName === themeSettings.machineName;
 
                             return (
