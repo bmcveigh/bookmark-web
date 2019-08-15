@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Component} from "react";
 import {connect} from "react-redux";
+import {Redirect} from "react-router";
 import {Alert, Button, Form, FormGroup, Input} from "reactstrap";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {authenticateUser} from "../../../../store/userLogin/actions";
@@ -45,6 +46,9 @@ class UserLoginForm extends Component<IProps, IState> {
             if (response.data && response.data.message) {
                 this.setState({error: response.data.message});
             }
+            else if (response.data && response.data.access_token) {
+                this.setState({isLoginSuccessful: true});
+            }
         }
     }
 
@@ -55,14 +59,19 @@ class UserLoginForm extends Component<IProps, IState> {
                     ? <Alert color="danger">{this.state.error}</Alert>
                     : null}
                 {this.state.isLoginSuccessful
-                    ? <Alert color="success">{this.state.labels.LOGIN_SUCCESS_LABEL}</Alert>
+                    ? (
+                        <div>
+                            <Alert color="success">{this.state.labels.LOGIN_SUCCESS_LABEL}</Alert>
+                            <Redirect to = {"/app"} />
+                        </div>
+                    )
                     : null}
                 <h3>{this.state.labels.LOGIN_PAGE_LABEL}</h3>
                 <FormGroup>
-                    <Input type="text" name="username" onChange={this.handleChange} />
+                    <Input type="text" name="username" onChange={this.handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" onChange={this.handleChange} />
+                    <Input type="password" name="password" onChange={this.handleChange}/>
                 </FormGroup>
                 <Button onClick={this.handleClick}>
                     {this.state.labels.LOGIN_BUTTON_LABEL}
