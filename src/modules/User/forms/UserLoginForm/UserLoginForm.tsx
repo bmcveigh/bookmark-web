@@ -1,8 +1,13 @@
 import * as React from 'react';
 import {Component} from "react";
+import {connect} from "react-redux";
 import {Alert, Button, Form, FormGroup, Input} from "reactstrap";
-import {callApi} from "../../../../store";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
+import {authenticateUser} from "../../../../store/userLogin/actions";
+
+interface IProps {
+    dispatch?: (data: any) => void;
+}
 
 interface IState {
     labels: any;
@@ -12,7 +17,7 @@ interface IState {
     isLoginSuccessful: boolean;
 }
 
-export default class UserLoginForm extends Component<{}, IState> {
+class UserLoginForm extends Component<IProps, IState> {
     public constructor(props: any, context: any) {
         super(props, context);
         this.state = {
@@ -32,22 +37,15 @@ export default class UserLoginForm extends Component<{}, IState> {
         this.setState(state);
     }
 
-    public handleClick() {
-        // todo: put this request in redux.
-        const formData = new FormData();
-        formData.append('grant_type', 'password');
-        formData.append('client_id', '8c730f21-4d34-42ea-aba6-e26f8470beb4');
-        formData.append('username', this.state.username);
-        formData.append('password', this.state.password);
-        formData.append('scope', 'authenticated');
+    public async handleClick() {
+        if (this.props.dispatch) {
+            const response: any = await authenticateUser(this.state.username, this.state.password);
+            this.props.dispatch(response);
 
-        const self = this;
-        callApi('oauth/token', {
-            body: formData,
-            method: 'POST',
-        })
-            .catch(error => self.setState({error: error.message}))
-            .then(() => self.setState({isLoginSuccessful: true}));
+            if (response.data && response.data.message) {
+                this.setState({error: response.data.message});
+            }
+        }
     }
 
     public render() {
@@ -73,3 +71,5 @@ export default class UserLoginForm extends Component<{}, IState> {
         );
     }
 }
+
+export default connect()(UserLoginForm);
