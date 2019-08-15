@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router";
 import {Alert, Button, Form, FormGroup, Input} from "reactstrap";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
-import {authenticateUser} from "../../../../store/userLogin/actions";
+
+import AuthService from '../../../../components/auth/AuthService';
 
 interface IProps {
     dispatch?: (data: any) => void;
@@ -40,13 +41,12 @@ class UserLoginForm extends Component<IProps, IState> {
 
     public async handleClick() {
         if (this.props.dispatch) {
-            const response: any = await authenticateUser(this.state.username, this.state.password);
-            this.props.dispatch(response);
+            const response: any = await new AuthService().login(this.state.username, this.state.password);
 
-            if (response.data && response.data.message) {
-                this.setState({error: response.data.message});
+            if (response && response.message) {
+                this.setState({error: response.message});
             }
-            else if (response.data && response.data.access_token) {
+            else if (response && response.access_token) {
                 this.setState({isLoginSuccessful: true});
             }
         }
