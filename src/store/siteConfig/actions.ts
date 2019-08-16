@@ -14,6 +14,10 @@ export function getSiteConfig() {
         "LOGIN_PAGE_LABEL": 'Login to your account',
         "LOGIN_SUCCESS_LABEL": 'Login successful',
         "LOGOUT_MENU_ITEM_LABEL": 'Logout',
+        "USER_PASSWORD_LABEL": 'Password',
+        "USER_PASSWORD_PLACEHOLDER_LABEL": 'Enter in your password',
+        "USER_USERNAME_LABEL": 'Username',
+        "USER_USERNAME_PLACEHOLDER_LABEL": 'Enter in your username or email address',
       },
       tabData: {
         userProfilePages: [

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
-import {Alert, Button, Form, FormGroup, Input} from "reactstrap";
+import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import AuthService from '../../../../components/auth/AuthService';
@@ -20,12 +20,17 @@ interface IState {
 }
 
 class UserLoginForm extends Component<IProps, IState> {
+    protected siteConfig: any;
+
     public constructor(props: any, context: any) {
         super(props, context);
+
+        this.siteConfig = getSiteConfig();
+
         this.state = {
             error: '',
             isLoginSuccessful: false,
-            labels: getSiteConfig().data.labels,
+            labels: this.siteConfig.data.labels,
             password: '',
             username: '',
         };
@@ -68,10 +73,22 @@ class UserLoginForm extends Component<IProps, IState> {
                     : null}
                 <h3>{this.state.labels.LOGIN_PAGE_LABEL}</h3>
                 <FormGroup>
-                    <Input type="text" name="username" onChange={this.handleChange}/>
+                    <Label for="username">{this.siteConfig.data.labels.USER_USERNAME_LABEL}</Label>
+                    <Input
+                        type="text"
+                        name="username"
+                        placeholder={this.state.labels.USER_USERNAME_PLACEHOLDER_LABEL}
+                        onChange={this.handleChange}
+                    />
                 </FormGroup>
                 <FormGroup>
-                    <Input type="password" name="password" onChange={this.handleChange}/>
+                    <Label for="password">{this.siteConfig.data.labels.USER_PASSWORD_LABEL}</Label>
+                    <Input
+                        type="password"
+                        name="password"
+                        placeholder={this.siteConfig.data.labels.USER_PASSWORD_PLACEHOLDER_LABEL}
+                        onChange={this.handleChange}
+                    />
                 </FormGroup>
                 <Button onClick={this.handleClick}>
                     {this.state.labels.LOGIN_BUTTON_LABEL}

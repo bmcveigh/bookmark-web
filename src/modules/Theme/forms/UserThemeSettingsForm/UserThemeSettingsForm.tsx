@@ -42,7 +42,7 @@ class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
         const globalStyles = classes;
 
         if (!this.props.themeSettings.data.data) {
-            return <div>Loading...</div>;
+            return <div>Loading themes...</div>;
         }
         else if (this.props.themeSettings.data && this.props.themeSettings.data.data.message) {
             return <Redirect to={"/user/login"} />;
