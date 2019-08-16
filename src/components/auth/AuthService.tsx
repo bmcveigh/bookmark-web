@@ -83,7 +83,7 @@ export default class AuthService {
     }
 
 
-    public fetch(endpoint: string, options: any) {
+    public fetch(endpoint: string, options?: any) {
         // performs api calls sending the required authentication headers
         const headers: any = {
             'Accept': 'application/json',
