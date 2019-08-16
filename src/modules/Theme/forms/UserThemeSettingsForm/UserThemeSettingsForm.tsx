@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {connect} from 'react-redux';
+import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {fetchUserThemeConfig} from "../../../../store/userTheme/actions";
 import ThemeIcon from "../../components/ThemeIcon/ThemeIcon";
 
@@ -53,21 +54,10 @@ class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
             "name": "Autumn",
         };
         // todo: remove this hardcoding.
-        const selectedTheme = themeSettings;
-        //
-        // let selectedTheme = {};
-        // if (this.refs.themes) {
-        //   selectedTheme = themes.find((theme => {
-        //     if (this.refs.themes.value === theme.machineName) {
-        //       return theme;
-        //     }
-        //     return themeSettings;
-        //   }));
-        // }
-        //
-        // if (this.props.user.data) {
-        //   return <div>Loading...</div>;
-        // }
+       if (!themes) {
+           return <div>{getSiteConfig().data.labels.GENERIC_ERROR_MESSAGE_LABEL}</div>;
+       }
+
 
         return (
             <form>
@@ -109,7 +99,7 @@ class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
                         type="text"
                         id="colors"
                         placeholder="Input"
-                        defaultValue={selectedTheme.colors}
+                        defaultValue={themeSettings.colors}
                         onChange={this.handleChange}
                     />
                 </div>
