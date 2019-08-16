@@ -10,8 +10,10 @@ export function getSiteConfig() {
       labels: {
         "GENERIC_ERROR_MESSAGE_LABEL": 'Well, this is embarrassing. Something went wrong.',
         "LOGIN_BUTTON_LABEL": 'Login',
+        "LOGIN_MENU_ITEM_LABEL": 'Login',
         "LOGIN_PAGE_LABEL": 'Login to your account',
-        "LOGIN_SUCCESS_LABEL": 'Login successful'
+        "LOGIN_SUCCESS_LABEL": 'Login successful',
+        "LOGOUT_MENU_ITEM_LABEL": 'Logout',
       },
       tabData: {
         userProfilePages: [

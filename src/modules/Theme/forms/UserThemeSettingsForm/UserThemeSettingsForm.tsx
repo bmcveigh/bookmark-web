@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
+import {Redirect} from "react-router";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {fetchUserThemeConfig} from "../../../../store/userTheme/actions";
 import ThemeIcon from "../../components/ThemeIcon/ThemeIcon";
@@ -43,8 +44,11 @@ class UserThemeSettingsForm extends React.Component<IUserSettingsFormProps> {
         if (!this.props.themeSettings.data.data) {
             return <div>Loading...</div>;
         }
+        else if (this.props.themeSettings.data && this.props.themeSettings.data.data.message) {
+            return <Redirect to={"/user/login"} />;
+        }
 
-        const themes = this.props.themeSettings.data.data.json.data;
+        const themes = this.props.themeSettings.data.data.data;
 
         // const user = this.props.user;
         // const preferences = user.preferences || {};

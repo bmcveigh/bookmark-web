@@ -1,19 +1,19 @@
 import {GET_USER_THEME_CONFIG} from "./types";
 
+import AuthService from '../../components/auth/AuthService';
+
 interface IDispatch {
     data: any;
     type: string;
 }
 
-export function fetchUserThemeConfig(dispatch: (object: IDispatch) => void) {
-    const API_URL = 'http://bookmark-api.docksal';
+export async function fetchUserThemeConfig(dispatch: (object: IDispatch) => void) {
+    const auth = new AuthService();
 
-    fetch(`${API_URL}/api/user-themes`)
-        .then(response => response.json().then(json => ({json, response})))
-        .then((value) => {
-            dispatch({
-                data: value,
-                type: GET_USER_THEME_CONFIG
-            });
-        });
+    const themes = await auth.fetch('api/user-themes', {});
+
+    dispatch({
+        data: themes,
+        type: GET_USER_THEME_CONFIG
+    });
 }
