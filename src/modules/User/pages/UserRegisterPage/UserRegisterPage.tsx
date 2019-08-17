@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {Col, Row} from "reactstrap";
-import UserLoginForm from "../../forms/UserLoginForm/UserLoginForm";
+import UserRegisterForm from "../../forms/UserRegisterForm/UserRegisterForm";
 
-export default function UserLoginPage() {
+export default function UserRegisterPage() {
     return (
         <Row>
             <Col md={6}>
-                <UserLoginForm />
+                <UserRegisterForm />
             </Col>
         </Row>
     );

@@ -10,6 +10,7 @@ import UserThemeSettingsPage from "../modules/Theme/pages/UserThemeSettingsPage/
 import UserLoginPage from "../modules/User/pages/UserLoginPage/UserLoginPage";
 import UserLogoutPage from "../modules/User/pages/UserLogoutPage/UserLogoutPage";
 import UserProfilePage from "../modules/User/pages/UserProfilePage/UserProfilePage";
+import UserRegisterPage from "../modules/User/pages/UserRegisterPage/UserRegisterPage";
 
 function Routes() {
     return (
@@ -18,13 +19,14 @@ function Routes() {
                     <MainMenu />
 
                     {
-                        !(new AuthService().loggedIn()) && window.location.pathname !== '/' ?
+                        !(new AuthService().loggedIn()) && window.location.pathname.indexOf('/app') > -1 ?
                         <Redirect to={"/user/login"} /> : null
                     }
                     }
                     <Route path="/" exact={true} component={Homepage} />
                     <Route path="/user/login" exact={true} component={UserLoginPage} />
                     <Route path="/user/logout" exact={true} component={UserLogoutPage} />
+                    <Route path="/user/register" exact={true} component={UserRegisterPage} />
                     <Route path="/app" exact={true} component={BookmarkListPage} />
                     <Route path="/app/space/*" exact={true} component={BookmarkListPage} />
                     <Route path="/app/user/profile" exact={true} component={UserProfilePage} />

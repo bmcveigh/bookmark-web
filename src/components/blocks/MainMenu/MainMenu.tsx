@@ -85,6 +85,14 @@ export default class MainMenu extends React.Component<{}, IState> {
                                             {this.siteConfig.data.labels.LOGIN_MENU_ITEM_LABEL}
                                         </Link>
                                     </NavItem>
+                                    <NavItem>
+                                        < Link
+                                            to = {"/user/register"}
+                                            className={"nav-link"}
+                                        >
+                                            {this.siteConfig.data.labels.REGISTRATION_MENU_ITEM_LABEL}
+                                        </Link>
+                                    </NavItem>
                                 </Nav>
                             )}
                         </Nav>
