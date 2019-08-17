@@ -2,10 +2,11 @@ import * as React from 'react';
 import {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
-import {Alert, Button, Form, FormGroup, Input, Label} from "reactstrap";
+import {Alert, Button, FormGroup, Input, Label} from "reactstrap";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import AuthService from '../../../../components/auth/AuthService';
+import UserForm from "../UserForm/UserForm";
 
 interface IProps {
     dispatch?: (data: any) => void;
@@ -59,7 +60,7 @@ class UserLoginForm extends Component<IProps, IState> {
 
     public render() {
         return (
-            <Form>
+            <UserForm>
                 {this.state.error.length
                     ? <Alert color="danger">{this.state.error}</Alert>
                     : null}
@@ -93,7 +94,7 @@ class UserLoginForm extends Component<IProps, IState> {
                 <Button onClick={this.handleClick}>
                     {this.state.labels.LOGIN_BUTTON_LABEL}
                 </Button>
-            </Form>
+            </UserForm>
         );
     }
 }
