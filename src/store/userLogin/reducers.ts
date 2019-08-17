@@ -1,7 +1,8 @@
-import {AUTHENTICATE_USER, FETCH_USER_PROFILE} from "./types";
+import {AUTHENTICATE_USER, FETCH_USER_PROFILE, USER_SET_IF_LOGGED_IN} from "./types";
 
 interface ISiteConfigTypes {
     data: any;
+    isUserLoggedIn: boolean;
 }
 
 interface IUserThemeConfigAction {
@@ -11,6 +12,7 @@ interface IUserThemeConfigAction {
 
 const initialState: ISiteConfigTypes = {
     data: {},
+    isUserLoggedIn: false,
 };
 
 export function userLoginReducer(
@@ -27,6 +29,13 @@ export function userLoginReducer(
 
         case FETCH_USER_PROFILE: {
             return action.data;
+        }
+
+        case USER_SET_IF_LOGGED_IN: {
+            return {
+                ...state,
+                isUserLoggedIn: action.data,
+            };
         }
 
         default:

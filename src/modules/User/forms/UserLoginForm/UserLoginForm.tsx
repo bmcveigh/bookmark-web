@@ -3,14 +3,12 @@ import {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
 import {Alert, Button, FormGroup, Input, Label} from "reactstrap";
+import {IPropsReduxBase} from "../../../../components/interfaces";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import AuthService from '../../../../components/auth/AuthService';
+import {setIsUserLoggedIn} from "../../../../store/userLogin/actions";
 import UserForm from "../UserForm/UserForm";
-
-interface IProps {
-    dispatch?: (data: any) => void;
-}
 
 interface IState {
     labels: any;
@@ -20,7 +18,7 @@ interface IState {
     isLoginSuccessful: boolean;
 }
 
-class UserLoginForm extends Component<IProps, IState> {
+class UserLoginForm extends Component<IPropsReduxBase, IState> {
     protected siteConfig: any;
 
     public constructor(props: any, context: any) {
@@ -54,6 +52,10 @@ class UserLoginForm extends Component<IProps, IState> {
             }
             else if (response && response.access_token) {
                 this.setState({isLoginSuccessful: true});
+
+                if (this.props.dispatch) {
+                    this.props.dispatch(setIsUserLoggedIn(true));
+                }
             }
         }
     }

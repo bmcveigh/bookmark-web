@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {
     Collapse,
@@ -11,6 +12,11 @@ import {
 import AuthService from '../../auth/AuthService';
 
 import {getSiteConfig} from "../../../store/siteConfig/actions";
+import {IPropsReduxBase} from "../../interfaces";
+
+interface IProps extends IPropsReduxBase {
+    isUserLoggedIn: boolean;
+}
 
 interface IState {
     isOpen: boolean;
@@ -19,7 +25,7 @@ interface IState {
 /**
  * Main menu navigation bar component using Bootstrap framework.
  */
-export default class MainMenu extends React.Component<{}, IState> {
+class MainMenu extends React.Component<IProps, IState> {
     protected Auth: AuthService;
 
     protected siteConfig: any;
@@ -56,7 +62,7 @@ export default class MainMenu extends React.Component<{}, IState> {
                     <NavbarBrand href={"/"}>Bookmark Buddy</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar={true}>
                         <Nav className="ml-auto" navbar={true}>
-                            {this.Auth.loggedIn() ? (
+                            {this.props.isUserLoggedIn ? (
                                 <Nav className="ml-auto" navbar={true}>
                                     <NavItem>
                                       <Link
@@ -102,3 +108,11 @@ export default class MainMenu extends React.Component<{}, IState> {
         );
     }
 }
+
+function mapStateToProps(state: any) {
+    return {
+        isUserLoggedIn: state.userLoginReducer.isUserLoggedIn,
+    };
+}
+
+export default connect(mapStateToProps)(MainMenu);

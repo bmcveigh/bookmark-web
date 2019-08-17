@@ -1,23 +1,35 @@
 import * as React from 'react';
+import {connect} from "react-redux";
 import {Container} from "reactstrap";
+import AuthService from "../../../../components/auth/AuthService";
+import {IPropsReduxBase} from "../../../../components/interfaces";
+import {setIsUserLoggedIn} from "../../../../store/userLogin/actions";
 
 import SidebarMenu from '../../components/SidebarMenu/SidebarMenu';
 
-interface ISidebarMenuContainer {
+interface IProps extends IPropsReduxBase {
   children: object;
 }
 
-function SidebarMenuContainer(props: ISidebarMenuContainer) {
-  const classes = require('./SidebarMenuContainer.scss');
+class SidebarMenuContainer extends React.Component<IProps> {
+    public componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
+        if (this.props.dispatch) {
+            this.props.dispatch(setIsUserLoggedIn(new AuthService().loggedIn()));
+        }
+    }
 
-    return (
-      <div className={classes.SidebarMenuContainer}>
-        <SidebarMenu />
-        <Container fluid={true} className={`${classes.Content}`}>
-          {props.children}
-        </Container>
-      </div>
-  );
+    public render() {
+        const classes = require('./SidebarMenuContainer.scss');
+
+        return (
+            <div className={classes.SidebarMenuContainer}>
+                <SidebarMenu/>
+                <Container fluid={true} className={`${classes.Content}`}>
+                    {this.props.children}
+                </Container>
+            </div>
+        );
+    }
 }
 
-export default SidebarMenuContainer;
+export default connect()(SidebarMenuContainer);
