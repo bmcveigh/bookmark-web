@@ -42,7 +42,7 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
             });
         };
 
-        if (!this.props.bookmarkSpaces.data) {
+        if (!this.props.bookmarkSpaces.data || !this.props.bookmarkSpaces.data.data) {
             return <div>Loading bookmarks...</div>;
         }
 
