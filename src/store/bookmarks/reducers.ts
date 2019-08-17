@@ -1,21 +1,6 @@
 import {ADD_BOOKMARK, IBookmarkTypes, LOAD_BOOKMARKS} from "./types";
 
-const initialState: {} = {
-  bookmark: {},
-  bookmarks: [{
-    href: '#',
-    label: 'Item 1'
-  },
-    {
-      href: '#',
-      label: 'Item 1'
-    },
-    {
-      href: '#',
-      label: 'Item 1'
-    }
-  ]
-};
+const initialState: {} = {};
 
 export function bookmarkReducer(
     state: any = initialState,
@@ -29,10 +14,7 @@ export function bookmarkReducer(
       };
     }
     case LOAD_BOOKMARKS: {
-      return {
-        ...state,
-        bookmarks: action.bookmarks
-      };
+      return action;
     }
     default:
       return state;

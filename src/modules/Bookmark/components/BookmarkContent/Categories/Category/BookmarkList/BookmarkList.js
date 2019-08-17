@@ -22,12 +22,12 @@ const SortableItem = se(
       // style={props.userPreferenceStyles.cardLink}
     >
       <a
-        href={value.href}
+        href={value.link.uri}
         key={index}
         target="_blank"
         // style={props.userPreferenceStyles.cardLink}
       >
-        {value.label}
+        {value.link.title}
       </a>
       <a
         href="#"

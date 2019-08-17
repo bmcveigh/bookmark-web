@@ -1,4 +1,5 @@
 import store from '..';
+import AuthService from "../../components/auth/AuthService";
 
 import {ADD_BOOKMARK, LOAD_BOOKMARKS} from "./types";
 
@@ -12,21 +13,9 @@ export function addBookmark() {
   });
 }
 
-export function loadBookmarks() {
-  store().dispatch({
-    bookmarks: [{
-        href: '#',
-        label: 'Item 1'
-      },
-      {
-        href: '#',
-        label: 'Item 1'
-      },
-      {
-        href: '#',
-        label: 'Item 1'
-      }
-    ],
+export async function fetchBookmarks() {
+  return {
+    data: await new AuthService().fetch('api/v1/my-bookmarks'),
     type: LOAD_BOOKMARKS
-  });
+  };
 }

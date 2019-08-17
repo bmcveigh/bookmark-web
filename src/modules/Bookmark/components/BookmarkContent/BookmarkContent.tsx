@@ -3,6 +3,7 @@ import * as React from 'react';
 import {connect} from "react-redux";
 
 import {Col, Row} from "reactstrap";
+import {fetchBookmarks} from "../../../../store/bookmarks/actions";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
@@ -18,9 +19,15 @@ interface ICategoriesState {
 const CATEGORY_VIEW = 'CATEGORY_VIEW';
 const TABLE_VIEW = 'TABLE_VIEW';
 
-class BookmarkContent extends React.Component<{}, ICategoriesState> {
-    public componentWillMount(): void {
+class BookmarkContent extends React.Component<any, ICategoriesState> {
+
+    public async componentWillMount() {
         this.setState({viewMode: CATEGORY_VIEW});
+
+        if (this.props.dispatch) {
+            const bookmarks = await fetchBookmarks();
+            this.props.dispatch(bookmarks);
+        }
     }
 
     public render() {
@@ -35,17 +42,19 @@ class BookmarkContent extends React.Component<{}, ICategoriesState> {
             });
         };
 
+        if (!this.props.bookmarkSpaces.data) {
+            return <div>Loading bookmarks...</div>;
+        }
+
+        const spaces = this.props.bookmarkSpaces.data.data.bookmarkSpaces;
+
         // todo: refactor this process data from the back-end.
-        const bkSpaceTabsData: object[] = [
-            {
-                href: `/app/space/default`,
-                label: `Personal (default space)`,
-            },
-            {
-                href: `/app/space/1`,
-                label: `Work`,
-            }
-        ];
+        const bkSpaceTabsData: object[] = spaces.map((space: any, i: number) => {
+            return {
+              href: `/app/space/${i}`,
+              label: space.name,
+            };
+        });
 
         return (
             <div>
@@ -70,11 +79,17 @@ class BookmarkContent extends React.Component<{}, ICategoriesState> {
                 <div className={classes.Content}>
                     <Tabs data={bkSpaceTabsData} />
                     {this.state.viewMode === CATEGORY_VIEW ?
-                        <Categories /> : <BookmarkTableView />}
+                        <Categories categories={spaces[0].bookmarkCategories} /> : <BookmarkTableView />}
                 </div>
             </div>
         );
     }
 }
 
-export default connect()(BookmarkContent);
+function mapStateToProps(state: any) {
+    return {
+        bookmarkSpaces: state.bookmarkReducer,
+    };
+}
+
+export default connect(mapStateToProps)(BookmarkContent);
