@@ -7,6 +7,7 @@ import {fetchBookmarks} from "../../../../store/bookmarks/actions";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
+import NoBookmarks from "../NoBookmarks/NoBookmarks";
 import BookmarkTableView from "./BookmarkTableView/BookmarkTableView";
 import Categories from "./Categories/Categories";
 
@@ -47,14 +48,20 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
         }
 
         const spaces = this.props.bookmarkSpaces.data.data.bookmarkSpaces;
+        let bkSpaceTabsData: object[];
 
-        // todo: refactor this process data from the back-end.
-        const bkSpaceTabsData: object[] = spaces.map((space: any, i: number) => {
-            return {
-              href: `/app/space/${i}`,
-              label: space.name,
-            };
-        });
+        if (!spaces) {
+           bkSpaceTabsData = [];
+        }
+        else {
+            // todo: refactor this process data from the back-end.
+            bkSpaceTabsData = spaces.map((space: any, i: number) => {
+                return {
+                    href: `/app/space/${i}`,
+                    label: space.name,
+                };
+            });
+        }
 
         return (
             <div>
@@ -78,8 +85,11 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                 </Row>
                 <div className={classes.Content}>
                     <Tabs data={bkSpaceTabsData} />
-                    {this.state.viewMode === CATEGORY_VIEW ?
-                        <Categories categories={spaces[0].bookmarkCategories} /> : <BookmarkTableView />}
+                    {
+                        bkSpaceTabsData.length ? (this.state.viewMode === CATEGORY_VIEW ?
+                                <Categories categories={spaces[0].bookmarkCategories} /> : <BookmarkTableView />)
+                            : <NoBookmarks />
+                    }
                 </div>
             </div>
         );

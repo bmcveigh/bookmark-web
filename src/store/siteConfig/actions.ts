@@ -8,6 +8,7 @@ export function getSiteConfig() {
         clientId: '8c730f21-4d34-42ea-aba6-e26f8470beb4',
       },
       labels: {
+        "BOOKMARKS_NO_BOOKMARKS_LABEL": 'You do not have any bookmarks. To add your bookmarks, you must first create a space or import them from your browser.',
         "GENERIC_ERROR_MESSAGE_LABEL": 'Well, this is embarrassing. Something went wrong.',
         "LOGIN_BUTTON_LABEL": 'Login',
         "LOGIN_MENU_ITEM_LABEL": 'Login',
