@@ -3,7 +3,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 
 import { bookmarkReducer } from "./bookmarks/reducers";
-import { categoryReducer } from "./categories/reducers";
 import {getSiteConfig} from "./siteConfig/actions";
 import {siteConfigReducer} from "./siteConfig/reducers";
 import {userLoginReducer} from "./userLogin/reducers";
@@ -11,7 +10,6 @@ import {userThemeReducer} from "./userTheme/reducers";
 
 const rootReducer = combineReducers({
   bookmarkReducer,
-  categoryReducer,
   siteConfigReducer,
   userLoginReducer,
   userThemeReducer,

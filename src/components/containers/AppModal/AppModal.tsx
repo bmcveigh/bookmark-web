@@ -20,9 +20,15 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
         super(props);
 
         this.toggle = this.toggle.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     public componentWillMount(): void {
+        this.setState({modal: false});
+    }
+
+    public handleClick() {
+        this.props.confirmHandler();
         this.setState({modal: false});
     }
 
@@ -55,7 +61,7 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
                     {this.props.children}
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="primary" onClick={this.props.confirmHandler}>Done</Button>{' '}
+                    <Button color="primary" onClick={this.handleClick}>Done</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                   </ModalFooter>
                 </Modal>

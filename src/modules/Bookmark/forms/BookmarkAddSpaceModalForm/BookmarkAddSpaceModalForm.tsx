@@ -6,16 +6,22 @@ import { connect } from 'react-redux';
 import { Form, FormGroup } from 'reactstrap';
 import AuthService from "../../../../components/auth/AuthService";
 import AppModal from "../../../../components/containers/AppModal/AppModal";
+import {IPropsReduxBase} from "../../../../components/interfaces";
+import {addBookmarkSpace, fetchBookmarks} from "../../../../store/bookmarks/actions";
+
+interface IProps extends IPropsReduxBase {
+  userProfile: any;
+}
 
 interface IState {
   spaceDescription: string;
   spaceName: string;
 }
 
-class BookmarkAddSpaceModalForm extends Component<any, IState> {
+class BookmarkAddSpaceModalForm extends Component<IProps, IState> {
   protected Auth: AuthService;
 
-  public constructor(props: IState) {
+  public constructor(props: IProps) {
     super(props);
 
     this.Auth = new AuthService();
@@ -30,24 +36,11 @@ class BookmarkAddSpaceModalForm extends Component<any, IState> {
   }
 
   public async confirmHandler() {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-
-    // Add a space when user clicks "Done" button.
-    const options = {
-      body: JSON.stringify({
-        data:{
-          attributes: {
-            name: this.state.spaceName,
-            owner_id: this.props.userProfile.id,
-          },
-          type: "bookmark_space--bookmark_space",
-        },
-      }),
-      headers,
-      method: 'POST',
-    };
-    await this.Auth.fetch('api/bookmark_space/bookmark_space', options);
+    if (this.props.dispatch) {
+      const result = await addBookmarkSpace(this.state.spaceName, this.props.userProfile.id);
+      this.props.dispatch(result);
+      this.props.dispatch(await fetchBookmarks());
+    }
   }
 
   public handleChange(event: ChangeEvent) {
