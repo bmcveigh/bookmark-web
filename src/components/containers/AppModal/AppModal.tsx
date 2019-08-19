@@ -7,17 +7,12 @@ import CustomButton from '../../elements/Button/Button';
 interface IAppModalProps {
     children: any;
     className: string;
-    confirmHandler: any;
+    confirmHandler: () => void;
     title: string;
 }
 
 interface IAppModalState {
-    children: any;
-    className: string;
-    confirmHandler: object;
-    labelId: string;
     modal: boolean;
-    title: string;
 }
 
 class AppModal extends React.Component<IAppModalProps, IAppModalState> {
@@ -35,10 +30,6 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
         this.setState(prevState => ({
             modal: !prevState.modal,
         }));
-
-        // if (isConfirmed) {
-        //   this.props.confirmHandler();
-        // }
     }
 
     public render() {
@@ -64,8 +55,8 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
                     {this.props.children}
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="primary" onClick={this.toggle}>Done</Button>{' '}
-                      <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    <Button color="primary" onClick={this.props.confirmHandler}>Done</Button>{' '}
+                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
             </span>

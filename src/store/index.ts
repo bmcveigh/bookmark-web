@@ -17,19 +17,20 @@ const rootReducer = combineReducers({
   userThemeReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
-
-export function callApi(endpoint: string, params: RequestInit) {
+export function callApi(endpoint: string, params: any) {
   const API_URL = getSiteConfig().data.api.baseUrl;
 
   params.cache = "no-cache";
   params.mode = "cors";
   params.method = params.method || 'GET';
 
-  const headers = new Headers();
+  let headers = params.headers || null;
 
-  headers.append('Access-Control-Allow-Origin', window.location.href);
-  headers.append('Access-Control-Allow-Credentials', 'true');
+  if (!params.headers) {
+    headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', window.location.href);
+    headers.append('Access-Control-Allow-Credentials', 'true');
+  }
 
   if (params.method === 'POST') {
     params.headers = headers;

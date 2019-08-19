@@ -84,18 +84,17 @@ export default class AuthService {
 
 
     public fetch(endpoint: string, options?: any) {
+        options = options || {};
+
         // performs api calls sending the required authentication headers
-        const headers: any = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        };
+        const headers: Headers = options.headers || new Headers();
 
         // Setting Authorization header
         // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx
         if (this.loggedIn()) {
-            headers.Authorization = 'Bearer ' + this.getToken();
-            headers.client_id = getSiteConfig().data.api.clientId;
-            headers.scope = 'authenticated';
+            headers.append('Authorization', 'Bearer ' + this.getToken());
+            headers.append('client_id', getSiteConfig().data.api.clientId);
+            headers.append('scope', 'authenticated');
         }
 
         return callApi(endpoint, {
