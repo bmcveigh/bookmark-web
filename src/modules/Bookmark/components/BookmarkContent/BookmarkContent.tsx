@@ -3,11 +3,12 @@ import * as React from 'react';
 import {connect} from "react-redux";
 
 import {Col, Row} from "reactstrap";
+import NoContent from "../../../../components/elements/NoContent/NoContent";
 import {fetchBookmarks} from "../../../../store/bookmarks/actions";
+import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
-import NoBookmarks from "../NoBookmarks/NoBookmarks";
 import BookmarkTableView from "./BookmarkTableView/BookmarkTableView";
 import Categories from "./Categories/Categories";
 
@@ -88,7 +89,7 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                     {
                         bkSpaceTabsData.length ? (this.state.viewMode === CATEGORY_VIEW ?
                                 <Categories categories={spaces[0].bookmarkCategories} /> : <BookmarkTableView />)
-                            : <NoBookmarks />
+                            : <NoContent message={getSiteConfig().data.labels.BOOKMARKS_NO_BOOKMARKS_LABEL} />
                     }
                 </div>
             </div>
