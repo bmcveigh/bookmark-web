@@ -9,6 +9,7 @@ export function getSiteConfig() {
       },
       labels: {
         "BOOKMARKS_NO_BOOKMARKS_LABEL": 'You do not have any bookmarks. To add your bookmarks, you must first create a space or import them from your browser.',
+        "BOOKMARKS_NO_CATEGORIES_LABEL": 'You do not have any categories. To add your categories, you must click "Add Category" on the top left.',
         "GENERIC_ERROR_MESSAGE_LABEL": 'Well, this is embarrassing. Something went wrong.',
         "LOGIN_BUTTON_LABEL": 'Login',
         "LOGIN_MENU_ITEM_LABEL": 'Login',
