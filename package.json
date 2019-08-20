@@ -21,7 +21,6 @@
     "jest": "20.0.4",
     "jwt-decode": "^2.2.0",
     "mongodb": "^3.2.2",
-    "node-env-file": "^0.1.8",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
