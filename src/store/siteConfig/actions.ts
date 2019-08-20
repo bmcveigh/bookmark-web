@@ -4,7 +4,7 @@ export function getSiteConfig() {
   return {
     data: {
       api: {
-        baseUrl: 'http://bookmark-api.docksal',
+        baseUrl: process.env.API_URL,
         clientId: '8c730f21-4d34-42ea-aba6-e26f8470beb4',
       },
       labels: {

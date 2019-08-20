@@ -6,7 +6,7 @@ export async function authenticateUser(username: string, password: string) {
 }
 
 export async function fetchUserProfile() {
-    return await (new AuthService()).fetch('/api/v1/me');
+    return await (new AuthService()).fetch('api/v1/me');
 }
 
 export function setIsUserLoggedIn(isLoggedIn: boolean) {
