@@ -56,9 +56,9 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
         }
         else {
             // todo: refactor this process data from the back-end.
-            bkSpaceTabsData = spaces.map((space: any, i: number) => {
+            bkSpaceTabsData = spaces.map((space: any) => {
                 return {
-                    href: `/app/space/${i}`,
+                    href: `/app/space/${space.id}`,
                     label: space.name,
                 };
             });

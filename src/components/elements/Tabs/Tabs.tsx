@@ -28,9 +28,10 @@ function Tabs(props: ITabsProps) {
 
           return (
             <Link
-              to={item.href} className={`${tItem} ${isSelected ? classes['is-selected'] : ''}`}
+              to={item.href}
+              className={`${tItem} ${isSelected ? classes['is-selected'] : ''}`}
               key={key}
-              // style={isSelected ? tabs.selected : tabs.notSelected}
+              style={isSelected ? classes.selected : classes.notSelected}
             >
               {item.label}
             </Link>

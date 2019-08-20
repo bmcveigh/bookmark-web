@@ -6,12 +6,27 @@ import AuthService from "../../auth/AuthService";
 import {IPropsReduxBase} from "../../interfaces";
 
 class AppContainer extends React.Component<IPropsReduxBase> {
+    public Auth: AuthService;
+
+    /**
+     * Constructor for AppContainer.
+     *
+     * @param props
+     */
+    public constructor(props: IPropsReduxBase) {
+        super(props);
+
+        this.Auth = new AuthService();
+    }
+
     public async componentWillMount() {
         if (this.props.dispatch) {
-            this.props.dispatch(setIsUserLoggedIn(new AuthService().loggedIn()));
+            this.props.dispatch(setIsUserLoggedIn(this.Auth.loggedIn()));
 
-            const userProfile = await fetchUserProfile();
-            this.props.dispatch({data: userProfile, type: FETCH_USER_PROFILE});
+            if (this.Auth.loggedIn()) {
+                const userProfile = await fetchUserProfile();
+                this.props.dispatch({data: userProfile, type: FETCH_USER_PROFILE});
+            }
         }
     }
 
