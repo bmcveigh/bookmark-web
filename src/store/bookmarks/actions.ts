@@ -1,7 +1,6 @@
-import store from '..';
 import AuthService from "../../components/auth/AuthService";
 
-import {ADD_BOOKMARK, ADD_BOOKMARK_SPACE, LOAD_BOOKMARKS} from "./types";
+import {ADD_BOOKMARK_SPACE, DELETE_BOOKMARK_SPACE, LOAD_BOOKMARKS} from "./types";
 
 export async function addBookmarkSpace(spaceName: string, ownerId: string) {
     const headers = new Headers();
@@ -29,14 +28,17 @@ export async function addBookmarkSpace(spaceName: string, ownerId: string) {
     };
 }
 
-export function addBookmark() {
-    store().dispatch({
-        bookmark: {
-            href: '#',
-            label: 'Item'
-        },
-        type: ADD_BOOKMARK
-    });
+export async function deleteBookmarkSpace(uuid: string) {
+    // Delete a space upon user confirmation.
+    const options = {
+        method: 'DELETE',
+    };
+    const data = await new AuthService().fetch(`api/bookmark_space/bookmark_space/${uuid}`, options);
+
+    return {
+        data,
+        type: DELETE_BOOKMARK_SPACE,
+    };
 }
 
 export async function fetchBookmarks() {
