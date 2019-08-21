@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {FormGroup, Input, Label} from "reactstrap";
+import {IChangePropsBase} from "../../interfaces";
 
-interface IProps {
+interface IProps extends IChangePropsBase {
     label: string;
     name: string;
-    onChange: (event: any) => void;
     placeholder: string;
     type: 'text' | 'textarea' | 'submit' | 'password';
 }
