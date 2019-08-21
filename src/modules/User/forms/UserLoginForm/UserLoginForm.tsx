@@ -2,7 +2,8 @@ import * as React from 'react';
 import {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
-import {Alert, FormGroup, Input, Label} from "reactstrap";
+import {Alert} from "reactstrap";
+import FormField from "../../../../components/elements/FormField/FormField";
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
@@ -75,24 +76,18 @@ class UserLoginForm extends Component<IPropsReduxBase, IState> {
                     )
                     : null}
                 <h3>{this.state.labels.LOGIN_PAGE_LABEL}</h3>
-                <FormGroup>
-                    <Label for="username">{this.siteConfig.data.labels.USER_USERNAME_LABEL}</Label>
-                    <Input
-                        type="text"
-                        name="username"
-                        placeholder={this.state.labels.USER_USERNAME_PLACEHOLDER_LABEL}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="password">{this.siteConfig.data.labels.USER_PASSWORD_LABEL}</Label>
-                    <Input
-                        type="password"
-                        name="password"
-                        placeholder={this.siteConfig.data.labels.USER_PASSWORD_PLACEHOLDER_LABEL}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
+                <FormField
+                    label={this.siteConfig.data.labels.USER_USERNAME_LABEL}
+                    name={"username"}
+                    onChange={this.handleChange}
+                    placeholder={this.state.labels.USER_USERNAME_PLACEHOLDER_LABEL}
+                />
+                <FormField
+                    label={this.siteConfig.data.labels.USER_PASSWORD_LABEL}
+                    name={"password"}
+                    onChange={this.handleChange}
+                    placeholder={this.state.labels.USER_PASSWORD_PLACEHOLDER_LABEL}
+                />
             </UserForm>
         );
     }
