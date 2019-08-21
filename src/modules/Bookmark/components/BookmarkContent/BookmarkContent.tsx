@@ -9,6 +9,7 @@ import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
 import BookmarkAddSpaceModalForm from "../../forms/BookmarkAddSpaceModalForm/BookmarkAddSpaceModalForm";
+import DeleteBookmarkSpaceModal from "../DeleteBookmarkSpaceModal/DeleteBookmarkSpaceModal";
 import BookmarkTableView from "./BookmarkTableView/BookmarkTableView";
 import Categories from "./Categories/Categories";
 
@@ -86,6 +87,12 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                 </Row>
                 <div className={classes.Content}>
                     <Tabs data={bkSpaceTabsData} />
+                    <Row className={classes.ActionButtons}>
+                        <Col md={9} />
+                        <Col md={3}>
+                            <DeleteBookmarkSpaceModal space={spaces[0]} />
+                        </Col>
+                    </Row>
                     {
                         bkSpaceTabsData.length ? (this.state.viewMode === CATEGORY_VIEW ?
                                 <Categories categories={spaces[0].bookmarkCategories} /> : <BookmarkTableView />)
