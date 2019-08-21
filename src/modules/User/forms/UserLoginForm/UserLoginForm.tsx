@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
-import {Alert, Button, FormGroup, Input, Label} from "reactstrap";
+import {Alert, FormGroup, Input, Label} from "reactstrap";
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
@@ -62,7 +62,7 @@ class UserLoginForm extends Component<IPropsReduxBase, IState> {
 
     public render() {
         return (
-            <UserForm>
+            <UserForm submitButtonClick={this.handleClick} submitButtonLabel={this.state.labels.LOGIN_BUTTON_LABEL}>
                 {this.state.error.length
                     ? <Alert color="danger">{this.state.error}</Alert>
                     : null}
@@ -93,9 +93,6 @@ class UserLoginForm extends Component<IPropsReduxBase, IState> {
                         onChange={this.handleChange}
                     />
                 </FormGroup>
-                <Button onClick={this.handleClick}>
-                    {this.state.labels.LOGIN_BUTTON_LABEL}
-                </Button>
             </UserForm>
         );
     }

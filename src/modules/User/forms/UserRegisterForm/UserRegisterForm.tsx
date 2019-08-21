@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import {Button, FormGroup, Input, Label} from "reactstrap";
+import {FormGroup, Input, Label} from "reactstrap";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import UserForm from "../UserForm/UserForm";
 
@@ -23,7 +23,10 @@ class UserRegisterForm extends React.Component {
 
     public render(): React.ReactNode {
         return (
-            <UserForm>
+            <UserForm
+                submitButtonLabel={this.siteConfig.labels.LOGIN_BUTTON_LABEL}
+                submitButtonClick={this.handleClick}
+            >
                 <h3>{this.siteConfig.labels.REGISTRATION_PAGE_LABEL}</h3>
                 <FormGroup>
                     <Label for="firstName">{this.siteConfig.labels.REGISTRATION_FIRST_NAME_LABEL}</Label>
@@ -61,9 +64,6 @@ class UserRegisterForm extends React.Component {
                         onChange={this.handleChange}
                     />
                 </FormGroup>
-                <Button onClick={this.handleClick}>
-                    {this.siteConfig.labels.LOGIN_BUTTON_LABEL}
-                </Button>
             </UserForm>
         );
     }
