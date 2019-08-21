@@ -87,6 +87,7 @@ class UserLoginForm extends Component<IPropsReduxBase, IState> {
                     name={"password"}
                     onChange={this.handleChange}
                     placeholder={this.state.labels.USER_PASSWORD_PLACEHOLDER_LABEL}
+                    type="password"
                 />
             </UserForm>
         );

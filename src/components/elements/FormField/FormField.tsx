@@ -12,13 +12,13 @@ interface IProps extends IChangePropsBase {
 function FormField(props: IProps) {
     let output: any;
 
-    switch (props.name) {
+    switch (props.type) {
         default:
         case 'password':
         case 'text': {
             output = (
                 <Input
-                    type="text"
+                    type={props.type}
                     name={props.name}
                     placeholder={props.placeholder}
                     onChange={props.onChange}
