@@ -72,8 +72,8 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                     // style={this.props.userPreferenceStyles.spaceHeader}
                 >
                     <Col md={8}>
-                        <BookmarkAddCategoryModalForm params={{}}/>
                         <BookmarkAddSpaceModalForm />
+                        <BookmarkAddCategoryModalForm params={{}}/>
                     </Col>
                     <Col md={4}>
                         <a
