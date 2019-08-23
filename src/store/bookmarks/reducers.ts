@@ -1,4 +1,11 @@
-import {ADD_BOOKMARK, ADD_BOOKMARK_SPACE, DELETE_BOOKMARK_SPACE, IBookmarkTypes, LOAD_BOOKMARKS} from "./types";
+import {
+    ADD_BOOKMARK,
+    ADD_BOOKMARK_CATEGORY,
+    ADD_BOOKMARK_SPACE,
+    DELETE_BOOKMARK_SPACE,
+    IBookmarkTypes,
+    LOAD_BOOKMARKS
+} from "./types";
 
 const initialState: {} = {};
 
@@ -8,7 +15,8 @@ export function bookmarkReducer(
 ): any {
     switch (action.type) {
         case ADD_BOOKMARK_SPACE:
-        case DELETE_BOOKMARK_SPACE: {
+        case DELETE_BOOKMARK_SPACE:
+        case ADD_BOOKMARK_CATEGORY: {
             return {
                 ...state,
                 action,
