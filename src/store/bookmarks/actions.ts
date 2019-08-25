@@ -84,7 +84,8 @@ export async function addBookmarkCategory(name: string, description: string, spa
                 {
                   "id": paragraph.data.id,
                   "meta": {
-                    "target_revision_id": 33
+                      arity: 0,
+                      target_revision_id: paragraph.data.attributes.drupal_internal__id,
                   },
                   "type": "paragraph--bookmark_category",
                 }
