@@ -65,6 +65,8 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
             });
         }
 
+        const activeSpace = spaces && spaces.length ? spaces[0] : {};
+
         return (
             <div>
                 <Row
@@ -73,7 +75,7 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                 >
                     <Col md={8}>
                         <BookmarkAddSpaceModalForm />
-                        <BookmarkAddCategoryModalForm space={spaces[0]} />
+                        <BookmarkAddCategoryModalForm space={activeSpace} />
                     </Col>
                     <Col md={4}>
                         <a
@@ -90,7 +92,7 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
                     <Row className={classes.ActionButtons}>
                         <Col md={9} />
                         <Col md={3}>
-                            <DeleteBookmarkSpaceModal space={spaces[0]} />
+                            <DeleteBookmarkSpaceModal space={activeSpace} />
                         </Col>
                     </Row>
                     {
