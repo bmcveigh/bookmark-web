@@ -26,7 +26,7 @@ export default class AuthService {
         const formData = new FormData();
 
         formData.append('grant_type', 'password');
-        formData.append('client_id', '8c730f21-4d34-42ea-aba6-e26f8470beb4');
+        formData.append('client_id', this.siteConfig.data.api.clientId);
         formData.append('username', username);
         formData.append('password', password);
         formData.append('scope', 'authenticated');
