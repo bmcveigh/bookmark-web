@@ -49,7 +49,7 @@ const SortableItem = se(
 const SortableList = sc(({items, props}) => {
     return (
         <ul>
-            {items ? items.map((value: any, index: number) => (
+            {items && items.length ? items.map((value: any, index: number) => (
                 <SortableItem key={`item-${index}`} index={index} value={value} props={props}/>
             )) : <li>No bookmarks available.</li>}
         </ul>

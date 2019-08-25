@@ -46,14 +46,20 @@ async function createParagraphEntity(name: string, description: string, space: a
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
 
-    const op1 = {
+    const options = {
         body: JSON.stringify({
             data: {
                 attributes: {
                     description: {value: description, format: 'basic_html'},
                     name,
-                    parent_id: space.parentId,
+                    parent_field_name: 'bookmark_categories',
+                    parent_id: 1,
                     parent_type: 'bookmark_space',
+                },
+                relationships: {
+                    bookmarks: {
+                        data: [],
+                    },
                 },
                 type: "paragraph--bookmark_category",
             },
@@ -62,7 +68,7 @@ async function createParagraphEntity(name: string, description: string, space: a
         method: 'POST',
     };
 
-    return await new AuthService().fetch('api/paragraph/bookmark_category', op1);
+    return await new AuthService().fetch('api/paragraph/bookmark_category', options);
 }
 
 export async function addBookmarkCategory(name: string, description: string, space: any) {
@@ -74,13 +80,15 @@ export async function addBookmarkCategory(name: string, description: string, spa
     // Add a space when user clicks "Done" button.
     const options = {
         body: JSON.stringify({
-            "data": [
+            'data': [
                 {
-                    id: paragraph.data.id,
-                    meta: {},
-                    type: "paragraph--bookmark_category",
+                  "id": paragraph.data.id,
+                  "meta": {
+                    "target_revision_id": 33
+                  },
+                  "type": "paragraph--bookmark_category",
                 }
-            ]
+              ],
         }),
         headers,
         method: 'POST',
