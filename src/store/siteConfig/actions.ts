@@ -5,7 +5,7 @@ export function getSiteConfig() {
     data: {
       api: {
         baseUrl: process.env.API_URL,
-        clientId: '8c730f21-4d34-42ea-aba6-e26f8470beb4',
+        clientId: '1ce0b739-acea-4101-a56b-9c98bd1cf6fb',
       },
       labels: {
         "BOOKMARKS_NO_BOOKMARKS_LABEL": 'You do not have any bookmarks. To add your bookmarks, you must first create a space or import them from your browser.',

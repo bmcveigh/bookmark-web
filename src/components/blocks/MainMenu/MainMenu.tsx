@@ -9,10 +9,11 @@ import {
     NavItem,
 } from 'reactstrap';
 
-import AuthService from '../../auth/AuthService';
-
 import {getSiteConfig} from "../../../store/siteConfig/actions";
 import {IPropsReduxBase} from "../../interfaces";
+
+import AuthService from 'src/services/auth/AuthService';
+import { Services } from 'src/services/services';
 
 interface IProps extends IPropsReduxBase {
     isUserLoggedIn: boolean;
@@ -37,7 +38,7 @@ class MainMenu extends React.Component<IProps, IState> {
         this.state = {
             isOpen: false
         };
-        this.Auth = new AuthService();
+        this.Auth = Services.authService();
         this.siteConfig = getSiteConfig();
     }
 

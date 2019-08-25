@@ -2,8 +2,10 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import {fetchUserProfile, setIsUserLoggedIn} from "../../../store/userLogin/actions";
 import {FETCH_USER_PROFILE} from "../../../store/userLogin/types";
-import AuthService from "../../auth/AuthService";
 import {IPropsReduxBase} from "../../interfaces";
+
+import AuthService from 'src/services/auth/AuthService';
+import { Services } from 'src/services/services';
 
 class AppContainer extends React.Component<IPropsReduxBase> {
     public Auth: AuthService;
@@ -16,7 +18,7 @@ class AppContainer extends React.Component<IPropsReduxBase> {
     public constructor(props: IPropsReduxBase) {
         super(props);
 
-        this.Auth = new AuthService();
+        this.Auth = Services.authService();
     }
 
     public async componentWillMount() {

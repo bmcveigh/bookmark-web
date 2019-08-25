@@ -1,6 +1,7 @@
-import AuthService from "../../components/auth/AuthService";
-
 import {ADD_BOOKMARK_CATEGORY, ADD_BOOKMARK_SPACE, DELETE_BOOKMARK_SPACE, LOAD_BOOKMARKS} from "./types";
+
+import AuthService from 'src/services/auth/AuthService';
+import { Services } from 'src/services/services';
 
 export async function addBookmarkSpace(spaceName: string, ownerId: string) {
     const headers = new Headers();
@@ -20,7 +21,7 @@ export async function addBookmarkSpace(spaceName: string, ownerId: string) {
         headers,
         method: 'POST',
     };
-    const data = await new AuthService().fetch('api/bookmark_space/bookmark_space', options);
+    const data = await Services.authService().fetch('api/bookmark_space/bookmark_space', options);
 
     return {
         data,
@@ -33,7 +34,7 @@ export async function deleteBookmarkSpace(uuid: string) {
     const options = {
         method: 'DELETE',
     };
-    const data = await new AuthService().fetch(`api/bookmark_space/bookmark_space/${uuid}`, options);
+    const data = await Services.authService().fetch(`api/bookmark_space/bookmark_space/${uuid}`, options);
 
     return {
         data,
@@ -41,17 +42,18 @@ export async function deleteBookmarkSpace(uuid: string) {
     };
 }
 
-export async function addBookmarkCategory(name: string, description: string, space: any) {
+async function createParagraphEntity(name: string, description: string, space: any) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
 
-    // Add a space when user clicks "Done" button.
-    const options = {
+    const op1 = {
         body: JSON.stringify({
             data: {
                 attributes: {
-                    description,
+                    description: {value: description, format: 'basic_html'},
                     name,
+                    parent_id: space.parentId,
+                    parent_type: 'bookmark_space',
                 },
                 type: "paragraph--bookmark_category",
             },
@@ -60,8 +62,32 @@ export async function addBookmarkCategory(name: string, description: string, spa
         method: 'POST',
     };
 
+    return await new AuthService().fetch('api/paragraph/bookmark_category', op1);
+}
+
+export async function addBookmarkCategory(name: string, description: string, space: any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    const paragraph = await createParagraphEntity(name, description, space);
+
+    // Add a space when user clicks "Done" button.
+    const options = {
+        body: JSON.stringify({
+            "data": [
+                {
+                    id: paragraph.data.id,
+                    meta: {},
+                    type: "paragraph--bookmark_category",
+                }
+            ]
+        }),
+        headers,
+        method: 'POST',
+    };
+
     // Add a bookmark category upon user confirmation.
-    const data = await new AuthService().fetch(`api/paragraph/bookmark_category`, options);
+    const data = await Services.authService().fetch(`api/bookmark_space/bookmark_space/${space.id}/relationships/bookmark_categories`, options);
 
     return {
         data,
@@ -71,7 +97,7 @@ export async function addBookmarkCategory(name: string, description: string, spa
 
 export async function fetchBookmarks() {
     return {
-        data: await new AuthService().fetch('api/v1/my-bookmarks'),
+        data: await Services.authService().fetch('api/v1/my-bookmarks'),
         type: LOAD_BOOKMARKS
     };
 }

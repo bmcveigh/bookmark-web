@@ -7,9 +7,10 @@ import FormField from "../../../../components/elements/FormField/FormField";
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
-import AuthService from '../../../../components/auth/AuthService';
 import {setIsUserLoggedIn} from "../../../../store/userLogin/actions";
 import UserForm from "../UserForm/UserForm";
+
+import { Services } from 'src/services/services';
 
 interface IState {
     labels: any;
@@ -46,7 +47,7 @@ class UserLoginForm extends Component<IPropsReduxBase, IState> {
 
     public async handleClick() {
         if (this.props.dispatch) {
-            const response: any = await new AuthService().login(this.state.username, this.state.password);
+            const response: any = await Services.authService().login(this.state.username, this.state.password);
 
             if (response && response.message) {
                 this.setState({error: response.message});
