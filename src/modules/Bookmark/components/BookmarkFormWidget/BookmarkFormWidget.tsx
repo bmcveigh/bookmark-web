@@ -13,7 +13,7 @@ interface IProps extends IPropsReduxBase {
 }
 
 interface IState {
-    displayAddBookmarkForm: boolean;
+    bookmarks: IBookmark[];
 }
 
 class BookmarkFormWidget extends Component<IProps, IState> {
@@ -22,7 +22,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         super(props);
 
         this.state = {
-            displayAddBookmarkForm: false,
+            bookmarks: [],
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -31,7 +31,13 @@ class BookmarkFormWidget extends Component<IProps, IState> {
 
     public handleClick(event: any) {
         event.preventDefault();
-        this.setState({displayAddBookmarkForm: !this.state.displayAddBookmarkForm})
+        const bookmarks = this.state.bookmarks;
+        bookmarks.push({
+            href: 'http://',
+            id: 0,
+            label: '',
+        });
+        this.setState({bookmarks});
     }
 
     public handleChange(event: any) {
@@ -60,13 +66,19 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                 <div>
                     {output}
                 </div>
+                {this.state.bookmarks.map((bookmark: IBookmark, key: number) => (
+                    <BookmarkFormItem
+                        key={`new--${key}`}
+                        onChange={this.handleChange}
+                        bookmark={bookmark}
+                    />
+                ))}
                 <div>
                     <a
                         href="#"
                         onClick={this.handleClick}
                     >{getSiteConfig().data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
-                {this.state.displayAddBookmarkForm ? <BookmarkFormItem onChange={this.handleChange} /> : null}
             </div>
         );
     }
