@@ -21,6 +21,7 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
 
         this.toggle = this.toggle.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     public componentWillMount(): void {
@@ -30,6 +31,18 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
     public handleClick() {
         this.props.confirmHandler();
         this.setState({modal: false});
+    }
+
+    /**
+     * Trigger modal confirmation when user hits enter key.
+     *
+     * @param event
+     */
+    public handleKeyUp(event: any) {
+        // Handle case where user hits the Enter key.
+        if (event.which === 13) {
+            this.handleClick();
+        }
     }
 
     public toggle(): void {
@@ -50,6 +63,7 @@ class AppModal extends React.Component<IAppModalProps, IAppModalState> {
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                     className={`${classes.AppModal} ${this.props.className}`}
+                    onKeyUp={this.handleKeyUp}
                 >
                   <ModalHeader
                       className={classes.ModalHeader}
