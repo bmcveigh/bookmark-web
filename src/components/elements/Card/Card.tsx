@@ -27,7 +27,7 @@ function Card(props: ICardProps) {
         {props.helpText ? (
           <HoverTooltip
             helpText={props.helpText}
-            tooltipId={`tooltip--${props.cardHeading.replace(/ /g, '')}`}
+            tooltipId={`tooltip--${props.cardHeading.replace(/ |\?/g, '')}`}
           >
             {props.cardHeading}
           </HoverTooltip>

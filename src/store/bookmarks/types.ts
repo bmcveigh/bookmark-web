@@ -15,6 +15,7 @@ export interface IBookmarkTypes {
 }
 
 export interface IBookmarkSpace {
+    internalId: string | number;
     name: string;
     description: string;
 }

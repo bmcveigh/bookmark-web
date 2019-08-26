@@ -6,8 +6,8 @@ import { Form } from 'reactstrap';
 import AppModal from "../../../../components/containers/AppModal/AppModal";
 import FormField from "../../../../components/elements/FormField/FormField";
 import {IPropsReduxBase} from "../../../../components/interfaces";
-import {addBookmarkCategory, fetchBookmarks} from "../../../../store/bookmarks/actions";
-import {IBookmarkCategory, IBookmarkSpace} from "../../../../store/bookmarks/types";
+import {addBookmarkCategory} from "../../../../store/bookmarks/actions";
+import {IBookmarkCategory, IBookmarkSpace, LOAD_BOOKMARKS} from "../../../../store/bookmarks/types";
 
 interface IProps extends IPropsReduxBase {
   space: IBookmarkSpace;
@@ -36,8 +36,10 @@ class BookmarkAddCategoryModalForm extends React.Component<IProps, IBookmarkCate
 
     // this.props.dispatch(updateUserById(this.props.user._id, user));
     if (this.props.dispatch) {
-      this.props.dispatch(await addBookmarkCategory(this.state.name, this.state.description, this.props.space));
-      this.props.dispatch(await fetchBookmarks());
+      const category = await addBookmarkCategory(this.state.name, this.state.description, this.props.space);
+      // this.props.dispatch({data: category.data, type: LOAD_BOOKMARKS});
+      this.props.dispatch(category);
+      this.props.dispatch({data: category.data, type: LOAD_BOOKMARKS});
     }
   }
 

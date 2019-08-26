@@ -1,6 +1,11 @@
-import {ADD_BOOKMARK_CATEGORY, ADD_BOOKMARK_SPACE, DELETE_BOOKMARK_SPACE, LOAD_BOOKMARKS} from "./types";
+import {
+    ADD_BOOKMARK_CATEGORY,
+    ADD_BOOKMARK_SPACE,
+    DELETE_BOOKMARK_SPACE,
+    IBookmarkSpace,
+    LOAD_BOOKMARKS
+} from "./types";
 
-import AuthService from 'src/services/auth/AuthService';
 import { Services } from 'src/services/services';
 
 export async function addBookmarkSpace(spaceName: string, ownerId: string) {
@@ -42,52 +47,20 @@ export async function deleteBookmarkSpace(uuid: string) {
     };
 }
 
-async function createParagraphEntity(name: string, description: string, space: any) {
+export async function addBookmarkCategory(name: string, description: string, space: IBookmarkSpace) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-
-    const options = {
-        body: JSON.stringify({
-            data: {
-                attributes: {
-                    description: {value: description, format: 'basic_html'},
-                    name,
-                    parent_field_name: 'bookmark_categories',
-                    parent_id: 1,
-                    parent_type: 'bookmark_space',
-                },
-                relationships: {
-                    bookmarks: {
-                        data: [],
-                    },
-                },
-                type: "paragraph--bookmark_category",
-            },
-        }),
-        headers,
-        method: 'POST',
-    };
-
-    return await new AuthService().fetch('api/paragraph/bookmark_category', options);
-}
-
-export async function addBookmarkCategory(name: string, description: string, space: any) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-
-    const paragraph = await createParagraphEntity(name, description, space);
+    headers.append('Content-Type', 'application/json');
 
     // Add a space when user clicks "Done" button.
     const options = {
         body: JSON.stringify({
             'data': [
                 {
-                  "id": paragraph.data.id,
                   "meta": {
-                      arity: 0,
-                      target_revision_id: paragraph.data.attributes.drupal_internal__id,
+                      description,
+                      name,
+                      spaceId: space.internalId,
                   },
-                  "type": "paragraph--bookmark_category",
                 }
               ],
         }),
@@ -96,7 +69,7 @@ export async function addBookmarkCategory(name: string, description: string, spa
     };
 
     // Add a bookmark category upon user confirmation.
-    const data = await Services.authService().fetch(`api/bookmark_space/bookmark_space/${space.id}/relationships/bookmark_categories`, options);
+    const data = await Services.authService().fetch(`api/v1/my-bookmarks`, options);
 
     return {
         data,
