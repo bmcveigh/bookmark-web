@@ -20,6 +20,13 @@ export interface IBookmarkSpace {
 }
 
 export interface IBookmarkCategory {
+    bookmarks: IBookmark[];
     name: string;
     description: string;
+}
+
+export interface IBookmark {
+    href: string;
+    id: string | number;
+    label: string;
 }

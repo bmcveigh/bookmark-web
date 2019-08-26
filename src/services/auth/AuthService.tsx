@@ -29,7 +29,7 @@ export default class AuthService {
         formData.append('client_id', this.siteConfig.data.api.clientId);
         formData.append('username', username);
         formData.append('password', password);
-        formData.append('scope', 'authenticated');
+        formData.append('scope', 'client_basic');
 
         const params = {method: 'POST', body: formData};
 

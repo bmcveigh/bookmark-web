@@ -5,6 +5,7 @@ import {IChangePropsBase} from "../../interfaces";
 interface IProps extends IChangePropsBase {
     label: string;
     name: string;
+    defaultValue?: string;
     placeholder: string;
     type: 'text' | 'textarea' | 'submit' | 'password';
 }
@@ -20,6 +21,7 @@ function FormField(props: IProps) {
                 <Input
                     type={props.type}
                     name={props.name}
+                    defaultValue={props.defaultValue}
                     placeholder={props.placeholder}
                     onChange={props.onChange}
                 />
@@ -36,6 +38,7 @@ function FormField(props: IProps) {
 }
 
 FormField.defaultProps = {
+    defaultValue: '',
     type: 'text',
 };
 

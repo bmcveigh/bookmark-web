@@ -1,66 +1,73 @@
 import * as React from 'react';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Card from "../../../../../../components/elements/Card/Card";
 import CrudButtons from "../../../../../../components/widgets/CrudButtons/CrudButtons";
+import BookmarkEditCategoryForm from "../../../../forms/BookmarkEditCategoryForm/BookmarkEditCategoryForm";
 import BookmarkList from './BookmarkList/BookmarkList';
 
 interface ICategoryProps {
-  category: any;
+    category: any;
 }
+
 interface ICategoryState {
-  toggleEditForm: boolean;
+    toggleEditForm: boolean;
 }
 
 class Category extends React.Component<ICategoryProps, ICategoryState> {
 
-  public constructor(props: any) {
-    super(props);
-    this.state = {
-      toggleEditForm: false,
-    };
-  }
+    public constructor(props: any) {
+        super(props);
+        this.state = {
+            toggleEditForm: false,
+        };
 
-  public handleClick() {
-    // todo: implement click.
-  }
+        this.handleEditClick = this.handleEditClick.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    }
 
-  public render() {
-    const classes = require('./Category.scss');
+    public handleEditClick() {
+        this.setState({toggleEditForm: !this.state.toggleEditForm});
+    }
 
-    const category = this.props.category;
-    const output = (
-      <div>
-        <BookmarkList bookmarks={category.bookmarks} />
-      </div>
-    );
+    public handleDeleteClick() {
+        // todo
+    }
 
-    // if (this.state.toggleEditForm) {
-    //   output = <BookmarkEditCategoryForm category={category} />;
-    // }
+    public render() {
+        const classes = require('./Category.scss');
 
-    return (
-      <Card
-        cardHeading={category.name}
-        cardWidth={this.state.toggleEditForm ? 6 : 3}
-        className={classes.BookmarkCategory}
-        helpText={category.description || ''}
-      >
-        {output}
-        <div className={classes.BookmarkCategoryActions}>
-          <CrudButtons
-            editButtonLabel="Edit category"
-            editButtonId={`edit-category-${category.categoryId}`}
-            editButtonClick={this.handleClick}
-            deleteButtonLabel="Delete category"
-            deleteButtonId={`delete-category-${category.categoryId}`}
-            deleteButtonClick={this.handleClick}
-          />
-        </div>
-      </Card>
-    );
-  }
+        const category = this.props.category;
+        const output = this.state.toggleEditForm ? (
+            <BookmarkEditCategoryForm category={category} />
+        ) : (
+            <div>
+                <BookmarkList bookmarks={category.bookmarks}/>
+            </div>
+        );
+
+        return (
+            <Card
+                cardHeading={category.name}
+                cardWidth={this.state.toggleEditForm ? 6 : 3}
+                className={classes.BookmarkCategory}
+                helpText={category.description || ''}
+            >
+                {output}
+                <div className={classes.BookmarkCategoryActions}>
+                    <CrudButtons
+                        editButtonLabel="Edit category"
+                        editButtonId={`edit-category-${category.categoryId}`}
+                        editButtonClick={this.handleEditClick}
+                        deleteButtonLabel="Delete category"
+                        deleteButtonId={`delete-category-${category.categoryId}`}
+                        deleteButtonClick={this.handleDeleteClick}
+                    />
+                </div>
+            </Card>
+        );
+    }
 
 }
 
