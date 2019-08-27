@@ -10,8 +10,8 @@ interface IProps {
 
 const SaveCancelButtons = (props: IProps) => (
     <>
-        <Button color={"primary"} onClick={props.handleSave}>{props.saveLabel}</Button>
-        <a href="#" onClick={props.handleCancel}>{props.cancelLabel}</a>
+        <Button color="success" size={"sm"} onClick={props.handleSave}>{props.saveLabel}</Button>
+        <a href="#" onClick={props.handleCancel} className="text-danger">{props.cancelLabel}</a>
     </>
 );
 
