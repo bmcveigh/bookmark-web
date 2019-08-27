@@ -28,7 +28,11 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         super(props);
 
         this.state = {
-            bookmarks: [],
+            bookmarks: [{
+                href: 'http://',
+                id: 0,
+                label: '',
+            }],
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -97,7 +101,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
-                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave} />
+                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave}/>
             </div>
         );
     }
