@@ -52,7 +52,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         // todo
     }
 
-    public handleCancel() {
+    public handleCancel(event: any) {
+        event.preventDefault();
         // todo
     }
 
