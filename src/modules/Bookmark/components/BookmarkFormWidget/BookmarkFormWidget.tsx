@@ -12,6 +12,8 @@ import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
 interface IProps extends IPropsReduxBase {
     category: IBookmarkCategory;
     styles?: any;
+    handleCancel: (event: any) => void;
+    handleSave: () => void;
 }
 
 interface IState {
@@ -37,6 +39,14 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         this.siteConfig = getSiteConfig();
     }
 
+    public handleCancel(event: any) {
+        this.props.handleCancel(event);
+    }
+
+    public handleSave() {
+        this.props.handleSave();
+    }
+
     public handleClick(event: any) {
         event.preventDefault();
         const bookmarks = this.state.bookmarks;
@@ -49,15 +59,6 @@ class BookmarkFormWidget extends Component<IProps, IState> {
     }
 
     public handleChange(event: any) {
-        // todo
-    }
-
-    public handleCancel(event: any) {
-        event.preventDefault();
-        // todo
-    }
-
-    public handleSave() {
         // todo
     }
 

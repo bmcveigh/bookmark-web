@@ -25,6 +25,8 @@ class Category extends React.Component<ICategoryProps, ICategoryState> {
 
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     public handleEditClick() {
@@ -35,12 +37,35 @@ class Category extends React.Component<ICategoryProps, ICategoryState> {
         // todo
     }
 
+    /**
+     * Click handler when user cancels adding categories/bookmarks.
+     *
+     * @param event
+     */
+    public handleCancel(event: any) {
+        event.preventDefault();
+        this.setState({toggleEditForm: false});
+    }
+
+    /**
+     * Click handler when user saves adding categories/bookmarks.
+     *
+     * @param event
+     */
+    public handleSave() {
+        // todo
+    }
+
     public render() {
         const classes = require('./Category.scss');
 
         const category = this.props.category;
         const output = this.state.toggleEditForm ? (
-            <BookmarkEditCategoryForm category={category} />
+            <BookmarkEditCategoryForm
+                category={category}
+                handleCancel={this.handleCancel}
+                handleSave={this.handleSave}
+            />
         ) : (
             <div>
                 <BookmarkList bookmarks={category.bookmarks}/>
