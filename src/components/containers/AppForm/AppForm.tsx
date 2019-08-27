@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, Form} from "reactstrap";
+import {Form} from "reactstrap";
 import SaveCancelButtons from "../../widgets/SaveCancelButtons/SaveCancelButtons";
 
 interface IProps {
@@ -31,6 +31,7 @@ export default class AppForm extends React.Component<IProps> {
         super(props);
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleSubmitClick = this.handleSubmitClick.bind(this);
         this.handleCancelClick = this.handleCancelClick.bind(this);
     }
 
@@ -41,6 +42,12 @@ export default class AppForm extends React.Component<IProps> {
      */
     public handleKeyUp(event: any) {
         if (event.which === 13) {
+            this.props.submitButtonClick();
+        }
+    }
+
+    public handleSubmitClick() {
+        if (this.props.submitButtonClick) {
             this.props.submitButtonClick();
         }
     }
@@ -60,13 +67,10 @@ export default class AppForm extends React.Component<IProps> {
         return (
             <Form className={`${this.props.className} ${classes.UserForm}`} onKeyUp={this.handleKeyUp}>
                 {this.props.children}
-                <Button onClick={this.props.submitButtonClick}>
-                    {this.props.submitButtonLabel}
-                </Button>
                 <SaveCancelButtons
                     cancelLabel={this.props.cancelButtonLabel}
                     handleCancel={this.handleCancelClick}
-                    handleSave={this.props.submitButtonClick}
+                    handleSave={this.handleSubmitClick}
                 />
             </Form>
         );
