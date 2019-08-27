@@ -8,6 +8,12 @@ interface IProps {
     saveLabel?: string;
 }
 
+/**
+ * Component to provide generic Save and Cancel buttons.
+ *
+ * @param props
+ * @constructor
+ */
 const SaveCancelButtons = (props: IProps) => (
     <>
         <Button color="success" size={"sm"} onClick={props.handleSave}>{props.saveLabel}</Button>
