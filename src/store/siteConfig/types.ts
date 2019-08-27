@@ -1,5 +1,13 @@
-export interface ISiteConfigData {
-    tabData: any;
+export interface ISiteConfig {
+    data: {
+        api: {
+            baseUrl: string | undefined;
+            clientId: string;
+        };
+        labels: any;
+        tabData: any;
+    };
+    type: string;
 }
 
 

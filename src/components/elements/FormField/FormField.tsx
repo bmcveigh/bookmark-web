@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {FormGroup, Input, Label} from "reactstrap";
-import {IChangePropsBase} from "../../interfaces";
+import {IChangePropsBase, IKeyUpPropsBase} from "../../interfaces";
 
-interface IProps extends IChangePropsBase {
+interface IProps extends IChangePropsBase, IKeyUpPropsBase {
     label: string;
     name: string;
     defaultValue?: string;
@@ -10,36 +10,52 @@ interface IProps extends IChangePropsBase {
     type: 'text' | 'textarea' | 'submit' | 'password';
 }
 
-function FormField(props: IProps) {
-    let output: any;
+class FormField extends React.Component<IProps> {
+    public static defaultProps = {
+        defaultValue: '',
+        type: 'text',
+    };
 
-    switch (props.type) {
-        default:
-        case 'password':
-        case 'text': {
-            output = (
-                <Input
-                    type={props.type}
-                    name={props.name}
-                    defaultValue={props.defaultValue}
-                    placeholder={props.placeholder}
-                    onChange={props.onChange}
-                />
-            );
+    public constructor(props: IProps) {
+        super(props);
+
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
+    public handleKeyUp(event: any) {
+        if (this.props.onKeyUp && event.which === 13) {
+            this.props.onKeyUp();
         }
     }
 
-    return (
-        <FormGroup>
-            <Label for={props.name}>{props.label}</Label>
-            {output}
-        </FormGroup>
-    );
+    public render() {
+        let output: any;
+
+        switch (this.props.type) {
+            default:
+            case 'password':
+            case 'text': {
+                output = (
+                    <Input
+                        type={this.props.type}
+                        name={this.props.name}
+                        defaultValue={this.props.defaultValue}
+                        placeholder={this.props.placeholder}
+                        onChange={this.props.onChange}
+                        onKeyUp={this.handleKeyUp}
+                    />
+                );
+            }
+        }
+
+        return (
+            <FormGroup>
+                <Label for={this.props.name}>{this.props.label}</Label>
+                {output}
+            </FormGroup>
+        );
+    }
 }
 
-FormField.defaultProps = {
-    defaultValue: '',
-    type: 'text',
-};
 
 export default FormField;

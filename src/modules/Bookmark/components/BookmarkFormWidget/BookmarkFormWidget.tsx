@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
+import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
 
 interface IProps extends IPropsReduxBase {
@@ -18,6 +19,8 @@ interface IState {
 
 class BookmarkFormWidget extends Component<IProps, IState> {
 
+    protected siteConfig: ISiteConfig;
+
     public constructor(props: IProps) {
         super(props);
 
@@ -27,6 +30,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
+        this.siteConfig = getSiteConfig();
     }
 
     public handleClick(event: any) {
@@ -77,7 +82,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                     <a
                         href="#"
                         onClick={this.handleClick}
-                    >{getSiteConfig().data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
+                    >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
             </div>
         );
