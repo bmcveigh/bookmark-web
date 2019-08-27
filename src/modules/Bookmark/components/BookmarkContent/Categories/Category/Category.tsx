@@ -42,8 +42,7 @@ class Category extends React.Component<ICategoryProps, ICategoryState> {
      *
      * @param event
      */
-    public handleCancel(event: any) {
-        event.preventDefault();
+    public handleCancel() {
         this.setState({toggleEditForm: false});
     }
 

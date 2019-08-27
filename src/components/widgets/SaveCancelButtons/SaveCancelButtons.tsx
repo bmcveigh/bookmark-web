@@ -3,7 +3,7 @@ import {Button, Col, Row} from "reactstrap";
 
 interface IProps {
     cancelLabel?: string;
-    handleCancel: (event: any) => void;
+    handleCancel: () => void;
     handleSave: () => void;
     saveLabel?: string;
 }
@@ -14,18 +14,34 @@ interface IProps {
  * @param props
  * @constructor
  */
-const SaveCancelButtons = (props: IProps) => (
-    <Row className={require('./SaveCancelButtons.scss').SaveCancelButtons}>
-        <Col md={12}>
-            <Button color="success" size={"sm"} onClick={props.handleSave}>{props.saveLabel}</Button>
-            <a href="#" onClick={props.handleCancel} className="text-danger">{props.cancelLabel}</a>
-        </Col>
-    </Row>
-);
+class SaveCancelButtons extends React.Component<IProps> {
+    public static defaultProps = {
+        cancelLabel: 'Cancel',
+        saveLabel: 'Save',
+    };
 
-SaveCancelButtons.defaultProps = {
-    cancelLabel: 'Cancel',
-    saveLabel: 'Save',
-};
+    public constructor(props: IProps) {
+        super(props);
+
+        this.handleCancel = this.handleCancel.bind(this);
+    }
+
+    public handleCancel(event: any) {
+        event.preventDefault();
+        this.props.handleCancel();
+    }
+
+    public render() {
+        return (
+            <Row className={require('./SaveCancelButtons.scss').SaveCancelButtons}>
+                <Col md={12}>
+                    <Button color="success" size={"sm"} onClick={this.props.handleSave}>{this.props.saveLabel}</Button>
+                    <a href="#" onClick={this.handleCancel} className="text-danger">{this.props.cancelLabel}</a>
+                </Col>
+            </Row>
+        );
+    }
+}
+
 
 export default SaveCancelButtons;

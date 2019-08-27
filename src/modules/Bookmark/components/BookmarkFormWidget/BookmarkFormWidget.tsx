@@ -12,7 +12,7 @@ import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
 interface IProps extends IPropsReduxBase {
     category: IBookmarkCategory;
     styles?: any;
-    handleCancel: (event: any) => void;
+    handleCancel: () => void;
     handleSave: () => void;
 }
 
@@ -43,8 +43,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         this.siteConfig = getSiteConfig();
     }
 
-    public handleCancel(event: any) {
-        this.props.handleCancel(event);
+    public handleCancel() {
+        this.props.handleCancel();
     }
 
     public handleSave() {

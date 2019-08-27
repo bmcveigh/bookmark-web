@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Component} from 'react';
 
 import {connect} from 'react-redux';
+import AppForm from "../../../../components/containers/AppForm/AppForm";
 
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {IBookmarkCategory} from "../../../../store/bookmarks/types";
@@ -21,6 +22,7 @@ class BookmarkEditCategoryForm extends Component<IProps> {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleCancel= this.handleCancel.bind(this);
         this.handleSave = this.handleSave.bind(this);
     }
@@ -33,13 +35,15 @@ class BookmarkEditCategoryForm extends Component<IProps> {
         // todo
     }
 
-    public handleCancel(event: any) {
+    public handleCancel(event?: any) {
         this.props.handleCancel(event);
     }
 
     public handleSave() {
         this.props.handleSave();
+        this.handleCancel();
     }
+
 
     public render() {
         const classes = require('./BookmarkEditCategoryForm.scss');
@@ -47,7 +51,10 @@ class BookmarkEditCategoryForm extends Component<IProps> {
         // const globalStyles = this.props.styles ? this.props.styles.data : {};
 
         return (
-            <form className={classes.BookmarkEditCategoryForm}>
+           <AppForm
+               className={classes.BookmarkEditCategoryForm}
+               submitButtonClick={this.handleSave}
+           >
                 <FormField
                     label="Category Name"
                     name="name"
@@ -66,7 +73,7 @@ class BookmarkEditCategoryForm extends Component<IProps> {
                                     handleCancel={this.handleCancel}
                                     handleSave={this.handleSave}
                 />
-            </form>
+            </AppForm>
         );
     }
 
