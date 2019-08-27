@@ -54,6 +54,7 @@ class BookmarkEditCategoryForm extends Component<IProps> {
            <AppForm
                className={classes.BookmarkEditCategoryForm}
                submitButtonClick={this.handleSave}
+               cancelButtonClick={this.handleCancel}
            >
                 <FormField
                     label="Category Name"

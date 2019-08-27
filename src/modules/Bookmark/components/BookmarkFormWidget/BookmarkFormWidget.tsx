@@ -3,7 +3,6 @@ import {Component} from 'react';
 
 import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
-import SaveCancelButtons from "../../../../components/widgets/SaveCancelButtons/SaveCancelButtons";
 import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
@@ -101,7 +100,6 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
-                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave}/>
             </div>
         );
     }

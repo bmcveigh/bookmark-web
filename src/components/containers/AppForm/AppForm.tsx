@@ -1,9 +1,12 @@
 import * as React from 'react';
 import {Button, Form} from "reactstrap";
+import SaveCancelButtons from "../../widgets/SaveCancelButtons/SaveCancelButtons";
 
 interface IProps {
     children: any;
     className?: string;
+    cancelButtonClick?: () => void;
+    cancelButtonLabel?: string;
     submitButtonClick: () => void;
     submitButtonLabel?: string;
 }
@@ -14,6 +17,7 @@ interface IProps {
 export default class AppForm extends React.Component<IProps> {
 
     public static defaultProps = {
+        cancelButtonLabel: 'Cancel',
         className: '',
         submitButtonLabel: 'Submit',
     };
@@ -25,7 +29,9 @@ export default class AppForm extends React.Component<IProps> {
      */
     public constructor(props: Readonly<IProps>) {
         super(props);
+
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleCancelClick = this.handleCancelClick.bind(this);
     }
 
     /**
@@ -36,6 +42,12 @@ export default class AppForm extends React.Component<IProps> {
     public handleKeyUp(event: any) {
         if (event.which === 13) {
             this.props.submitButtonClick();
+        }
+    }
+
+    public handleCancelClick() {
+        if (this.props.cancelButtonClick) {
+            this.props.cancelButtonClick();
         }
     }
 
@@ -51,6 +63,11 @@ export default class AppForm extends React.Component<IProps> {
                 <Button onClick={this.props.submitButtonClick}>
                     {this.props.submitButtonLabel}
                 </Button>
+                <SaveCancelButtons
+                    cancelLabel={this.props.cancelButtonLabel}
+                    handleCancel={this.handleCancelClick}
+                    handleSave={this.props.submitButtonClick}
+                />
             </Form>
         );
     }
