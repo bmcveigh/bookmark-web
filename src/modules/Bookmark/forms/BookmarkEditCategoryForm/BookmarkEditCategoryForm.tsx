@@ -6,6 +6,8 @@ import AppForm from "../../../../components/containers/AppForm/AppForm";
 
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import {IBookmarkCategory} from "../../../../store/bookmarks/types";
+import {getSiteConfig} from "../../../../store/siteConfig/actions";
+import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormWidget from '../../components/BookmarkFormWidget/BookmarkFormWidget';
 
 import FormField from 'src/components/elements/FormField/FormField';
@@ -18,8 +20,12 @@ interface IProps extends IPropsReduxBase {
 }
 
 class BookmarkEditCategoryForm extends Component<IProps> {
+    protected siteConfig: ISiteConfig;
+
     public constructor(props: IProps) {
         super(props);
+
+        this.siteConfig = getSiteConfig();
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -57,14 +63,14 @@ class BookmarkEditCategoryForm extends Component<IProps> {
                cancelButtonClick={this.handleCancel}
            >
                 <FormField
-                    label="Category Name"
+                    label={this.siteConfig.data.labels.BOOKMARKS_CATEGORY_NAME_LABEL}
                     name="name"
                     defaultValue={category.name}
                     placeholder="Enter category name"
                     onChange={this.handleChange}
                 />
                 <FormField
-                    label="Category Description"
+                    label={this.siteConfig.data.labels.BOOKMARKS_CATEGORY_DESCRIPTION_LABEL}
                     name="description"
                     defaultValue={category.description}
                     placeholder="Enter category description"
