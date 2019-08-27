@@ -16,7 +16,6 @@ interface IProps extends IPropsReduxBase {
     category: IBookmarkCategory;
     styles?: any;
     handleCancel: (event: any) => void;
-    handleSave: () => void;
 }
 
 class BookmarkEditCategoryForm extends Component<IProps> {
@@ -46,7 +45,6 @@ class BookmarkEditCategoryForm extends Component<IProps> {
     }
 
     public handleSave() {
-        this.props.handleSave();
         this.handleCancel();
     }
 
@@ -59,8 +57,6 @@ class BookmarkEditCategoryForm extends Component<IProps> {
         return (
            <AppForm
                className={classes.BookmarkEditCategoryForm}
-               submitButtonClick={this.handleSave}
-               cancelButtonClick={this.handleCancel}
            >
                 <FormField
                     label={this.siteConfig.data.labels.BOOKMARKS_CATEGORY_NAME_LABEL}

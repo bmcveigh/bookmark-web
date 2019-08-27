@@ -3,6 +3,7 @@ import {Component} from 'react';
 
 import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
+import SaveCancelButtons from "../../../../components/widgets/SaveCancelButtons/SaveCancelButtons";
 import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
@@ -17,6 +18,7 @@ interface IProps extends IPropsReduxBase {
 
 interface IState {
     bookmarks: IBookmark[];
+    formStateValues: any;
 }
 
 class BookmarkFormWidget extends Component<IProps, IState> {
@@ -32,10 +34,12 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                 id: 0,
                 label: '',
             }],
+            formStateValues: {},
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.handleSave = this.handleSave.bind(this);
 
@@ -48,6 +52,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
 
     public handleSave() {
         this.props.handleSave();
+        // todo: save state to the database.
     }
 
     public handleClick(event: any) {
@@ -61,8 +66,23 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         this.setState({bookmarks});
     }
 
+    /**
+     * Change handler to update user bookmark values to the state.
+     *
+     * @param event
+     */
     public handleChange(event: any) {
-        // todo
+        const formStateValues = {
+            formStateValues: this.state.formStateValues,
+        };
+        formStateValues.formStateValues[event.target.name] = event.target.value;
+        this.setState(formStateValues);
+    }
+
+    public handleKeyUp(event: any) {
+        if (event.which === 13) {
+            this.handleSave();
+        }
     }
 
     public render() {
@@ -82,7 +102,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         }) : null;
 
         return (
-            <div className={classes.BookmarkFormWidget}>
+            <div className={classes.BookmarkFormWidget} onKeyUp={this.handleKeyUp}>
                 <h3 className={classes.BookmarkFormLabel}>Bookmarks</h3>
                 <div>
                     {output}
@@ -100,6 +120,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
+                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave} />
             </div>
         );
     }

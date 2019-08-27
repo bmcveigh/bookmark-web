@@ -24,7 +24,7 @@ class FormField extends React.Component<IProps> {
 
     public handleKeyUp(event: any) {
         if (this.props.onKeyUp && event.which === 13) {
-            this.props.onKeyUp();
+            this.props.onKeyUp(event);
         }
     }
 
