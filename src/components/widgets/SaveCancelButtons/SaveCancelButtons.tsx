@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button} from "reactstrap";
+import {Button, Col, Row} from "reactstrap";
 
 interface IProps {
     cancelLabel?: string;
@@ -15,10 +15,12 @@ interface IProps {
  * @constructor
  */
 const SaveCancelButtons = (props: IProps) => (
-    <>
-        <Button color="success" size={"sm"} onClick={props.handleSave}>{props.saveLabel}</Button>
-        <a href="#" onClick={props.handleCancel} className="text-danger">{props.cancelLabel}</a>
-    </>
+    <Row className={require('./SaveCancelButtons.scss').SaveCancelButtons}>
+        <Col md={12}>
+            <Button color="success" size={"sm"} onClick={props.handleSave}>{props.saveLabel}</Button>
+            <a href="#" onClick={props.handleCancel} className="text-danger">{props.cancelLabel}</a>
+        </Col>
+    </Row>
 );
 
 SaveCancelButtons.defaultProps = {

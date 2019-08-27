@@ -3,11 +3,11 @@ import {Component} from 'react';
 
 import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
+import SaveCancelButtons from "../../../../components/widgets/SaveCancelButtons/SaveCancelButtons";
 import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
-import BookmarkFormWidgetSave from "./BookmarkFormWidgetSave/BookmarkFormWidgetSave";
 
 interface IProps extends IPropsReduxBase {
     category: IBookmarkCategory;
@@ -31,6 +31,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
 
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+        this.handleSave = this.handleSave.bind(this);
 
         this.siteConfig = getSiteConfig();
     }
@@ -47,6 +49,14 @@ class BookmarkFormWidget extends Component<IProps, IState> {
     }
 
     public handleChange(event: any) {
+        // todo
+    }
+
+    public handleCancel() {
+        // todo
+    }
+
+    public handleSave() {
         // todo
     }
 
@@ -85,7 +95,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
-                <BookmarkFormWidgetSave />
+                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave} />
             </div>
         );
     }
