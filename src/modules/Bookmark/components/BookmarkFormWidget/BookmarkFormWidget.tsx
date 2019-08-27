@@ -7,6 +7,7 @@ import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
+import BookmarkFormWidgetSave from "./BookmarkFormWidgetSave/BookmarkFormWidgetSave";
 
 interface IProps extends IPropsReduxBase {
     category: IBookmarkCategory;
@@ -84,6 +85,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
+                <BookmarkFormWidgetSave />
             </div>
         );
     }
