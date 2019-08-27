@@ -28,6 +28,7 @@ class AppContainer extends React.Component<IPropsReduxBase> {
             if (this.Auth.loggedIn()) {
                 const userProfile = await fetchUserProfile();
                 this.props.dispatch({data: userProfile, type: FETCH_USER_PROFILE});
+                this.props.dispatch(setIsUserLoggedIn(true));
             }
         }
     }
