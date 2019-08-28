@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { Form, FormGroup } from 'reactstrap';
 import AppModal from "../../../../components/containers/AppModal/AppModal";
 import {IPropsReduxBase} from "../../../../components/interfaces";
-import {addBookmarkSpace, fetchBookmarks} from "../../../../store/bookmarks/actions";
+import {fetchBookmarks} from "../../../../store/bookmarks/actions";
 
 import AuthService from 'src/services/auth/AuthService';
 import { Services } from 'src/services/services';
+import {addBookmarkSpace} from "../../../../store/bookmarkSpace/actions";
 
 interface IProps extends IPropsReduxBase {
   userProfile: any;
