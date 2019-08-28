@@ -103,13 +103,8 @@ export default class AuthService {
             headers,
             ...options
         })
-            .then(response => response.json().then(json => ({ json, response })))
-            .then(({ json, response }) => {
-                if (!response.ok) {
-                    return Promise.reject(json);
-                }
-
-                return json;
-            });
+            .then(res => res.json())
+            .then(response => response)
+            .catch(error => error);
     }
 }
