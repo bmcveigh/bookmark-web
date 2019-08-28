@@ -6,10 +6,7 @@ export const LOAD_BOOKMARKS = "LOAD_BOOKMARK";
 
 export interface IBookmarkTypes {
     type: string;
-    bookmark: {
-        href: string;
-        label: string;
-    };
+    bookmark: IBookmark;
     bookmarks: any;
 }
 

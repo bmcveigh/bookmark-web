@@ -8,7 +8,7 @@ import {
 
 const initialState: {} = {};
 
-export function bookmarkReducer(
+export function bookmark(
     state: any = initialState,
     action: IBookmarkTypes
 ): any {

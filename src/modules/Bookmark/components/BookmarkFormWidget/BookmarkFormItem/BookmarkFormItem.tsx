@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Col, Row} from "reactstrap";
 import FormField from "../../../../../components/elements/FormField/FormField";
 import {IChangePropsBase} from "../../../../../components/interfaces";
-import {IBookmark} from "../../../../../store/bookmarks/types";
+import {IBookmark} from "../../../../../store/bookmark/types";
 
 interface IProps extends IChangePropsBase {
     bookmark?: IBookmark;

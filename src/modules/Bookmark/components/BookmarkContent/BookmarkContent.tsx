@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {Col, Row} from "reactstrap";
 import NoContent from "../../../../components/elements/NoContent/NoContent";
-import {fetchBookmarks} from "../../../../store/bookmarks/actions";
+import {fetchBookmarks} from "../../../../store/bookmark/actions";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 
 import BookmarkAddCategoryModalForm from "../../forms/BookmarkAddCategoryModalForm/BookmarkAddCategoryModalForm";
@@ -108,7 +108,7 @@ class BookmarkContent extends React.Component<any, ICategoriesState> {
 
 function mapStateToProps(state: any) {
     return {
-        bookmarkSpaces: state.bookmarkReducer,
+        bookmarkSpaces: state.bookmark,
     };
 }
 

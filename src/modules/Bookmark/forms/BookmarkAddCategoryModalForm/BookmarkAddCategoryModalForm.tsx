@@ -6,9 +6,9 @@ import { Form } from 'reactstrap';
 import AppModal from "../../../../components/containers/AppModal/AppModal";
 import FormField from "../../../../components/elements/FormField/FormField";
 import {IPropsReduxBase} from "../../../../components/interfaces";
+import {LOAD_BOOKMARKS} from "../../../../store/bookmark/types";
 import {addBookmarkCategory} from "../../../../store/bookmarkCategory/actions";
 import {IBookmarkCategory} from "../../../../store/bookmarkCategory/types";
-import {LOAD_BOOKMARKS} from "../../../../store/bookmarks/types";
 import {IBookmarkSpace} from "../../../../store/bookmarkSpace/types";
 
 interface IProps extends IPropsReduxBase {

@@ -1,5 +1,5 @@
 // Describing the different ACTION NAMES available
-import {IBookmark} from "../bookmarks/types";
+import {IBookmark} from "../bookmark/types";
 
 export const ADD_BOOKMARK_CATEGORY = "ADD_BOOKMARK_CATEGORY";
 

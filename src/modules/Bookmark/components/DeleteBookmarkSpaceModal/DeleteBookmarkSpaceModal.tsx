@@ -3,7 +3,7 @@ import {Component} from 'react';
 import {connect} from "react-redux";
 import AppModal from '../../../../components/containers/AppModal/AppModal';
 import {IPropsReduxBase} from "../../../../components/interfaces";
-import {fetchBookmarks} from "../../../../store/bookmarks/actions";
+import {fetchBookmarks} from "../../../../store/bookmark/actions";
 import {deleteBookmarkSpace} from "../../../../store/bookmarkSpace/actions";
 
 interface IProps extends IPropsReduxBase {
