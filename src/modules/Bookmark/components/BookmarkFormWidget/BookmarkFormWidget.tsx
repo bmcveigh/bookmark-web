@@ -4,7 +4,8 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import SaveCancelButtons from "../../../../components/widgets/SaveCancelButtons/SaveCancelButtons";
-import {IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
+import {addBookmarks} from "../../../../store/bookmarks/actions";
+import {IAddBookmarksPayload, IBookmark, IBookmarkCategory} from "../../../../store/bookmarks/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormItem from "./BookmarkFormItem/BookmarkFormItem";
@@ -50,9 +51,32 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         this.props.handleCancel();
     }
 
-    public handleSave() {
-        this.props.handleSave();
+    /**
+     * Save bookmark data when user clicks the Save button.
+     */
+    public async handleSave() {
         // todo: save state to the database.
+        const formStateValues = this.state.formStateValues;
+
+        const payload: IAddBookmarksPayload = {data: [], categoryId: this.props.category.id};
+
+        Object.keys(formStateValues).map((key: string) => {
+            if (key.indexOf('href') > -1) {
+                const labelKey = key.replace('href', 'label');
+
+                payload.data.push({
+                    href: formStateValues[key],
+                    id: 0,
+                    label: formStateValues[labelKey] || '',
+                });
+            }
+        });
+
+        if (this.props.dispatch) {
+            this.props.dispatch(await addBookmarks(payload));
+        }
+
+        this.props.handleSave();
     }
 
     public handleClick(event: any) {

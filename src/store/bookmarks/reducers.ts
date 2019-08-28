@@ -1,7 +1,7 @@
 import {
-    ADD_BOOKMARK,
     ADD_BOOKMARK_CATEGORY,
     ADD_BOOKMARK_SPACE,
+    ADD_BOOKMARKS,
     DELETE_BOOKMARK_SPACE,
     IBookmarkTypes,
     LOAD_BOOKMARKS
@@ -23,7 +23,7 @@ export function bookmarkReducer(
             };
         }
 
-        case ADD_BOOKMARK: {
+        case ADD_BOOKMARKS: {
             return {
                 ...state,
                 bookmarks: action.bookmarks

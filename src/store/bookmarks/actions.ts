@@ -1,7 +1,7 @@
 import {
     ADD_BOOKMARK_CATEGORY,
-    ADD_BOOKMARK_SPACE,
-    DELETE_BOOKMARK_SPACE,
+    ADD_BOOKMARK_SPACE, ADD_BOOKMARKS,
+    DELETE_BOOKMARK_SPACE, IAddBookmarksPayload,
     IBookmarkSpace,
     LOAD_BOOKMARKS
 } from "./types";
@@ -82,4 +82,11 @@ export async function fetchBookmarks() {
         data: await Services.authService().fetch('api/v1/my-bookmarks'),
         type: LOAD_BOOKMARKS
     };
+}
+
+export async function addBookmarks(payload: IAddBookmarksPayload) {
+    return {
+        data: [], // todo: do a fetch to endpoint when available.
+        type: ADD_BOOKMARKS
+    }
 }
