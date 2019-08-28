@@ -1,5 +1,4 @@
 import {
-    ADD_BOOKMARK_CATEGORY,
     ADD_BOOKMARK_SPACE,
     ADD_BOOKMARKS,
     DELETE_BOOKMARK_SPACE,
@@ -15,8 +14,7 @@ export function bookmarkReducer(
 ): any {
     switch (action.type) {
         case ADD_BOOKMARK_SPACE:
-        case DELETE_BOOKMARK_SPACE:
-        case ADD_BOOKMARK_CATEGORY: {
+        case DELETE_BOOKMARK_SPACE: {
             return {
                 ...state,
                 action,

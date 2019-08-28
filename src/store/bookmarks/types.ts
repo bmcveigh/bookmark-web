@@ -1,7 +1,6 @@
 // Describing the different ACTION NAMES available
 export const ADD_BOOKMARK_SPACE = "ADD_BOOKMARK_SPACE";
 export const DELETE_BOOKMARK_SPACE = "DELETE_BOOKMARK_SPACE";
-export const ADD_BOOKMARK_CATEGORY = "ADD_BOOKMARK_CATEGORY";
 export const ADD_BOOKMARKS = "ADD_BOOKMARKS";
 export const LOAD_BOOKMARKS = "LOAD_BOOKMARK";
 
@@ -12,19 +11,6 @@ export interface IBookmarkTypes {
         label: string;
     };
     bookmarks: any;
-}
-
-export interface IBookmarkSpace {
-    internalId: string | number;
-    name: string;
-    description: string;
-}
-
-export interface IBookmarkCategory {
-    bookmarks: IBookmark[];
-    id: string | number;
-    name: string;
-    description: string;
 }
 
 export interface IBookmark {

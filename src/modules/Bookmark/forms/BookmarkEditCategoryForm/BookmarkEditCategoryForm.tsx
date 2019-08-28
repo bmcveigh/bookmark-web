@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import AppForm from "../../../../components/containers/AppForm/AppForm";
 
 import {IPropsReduxBase} from "../../../../components/interfaces";
-import {IBookmarkCategory} from "../../../../store/bookmarks/types";
+import {IBookmarkCategory} from "../../../../store/bookmarkCategory/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
 import BookmarkFormWidget from '../../components/BookmarkFormWidget/BookmarkFormWidget';
