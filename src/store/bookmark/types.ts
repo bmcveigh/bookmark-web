@@ -11,14 +11,17 @@ export interface IBookmarkTypes {
 }
 
 export interface IBookmark {
-    href: string;
-    id: string | number;
-    label: string;
+    title: string;
+    id?: string | number;
+    uri: string;
 }
 
 export interface IAddBookmarksPayload {
     categoryId: string | number;
     data: [{
-        meta: IBookmark;
+        meta: {
+            link: IBookmark;
+            notes: string;
+        };
     }];
 }

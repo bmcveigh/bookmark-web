@@ -1,5 +1,4 @@
 import * as decode from 'jwt-decode';
-import {callApi} from "../../store";
 import {getSiteConfig} from "../../store/siteConfig/actions";
 
 /**
@@ -33,7 +32,7 @@ export default class AuthService {
 
         const params = {method: 'POST', body: formData};
 
-        return await callApi('oauth/token', params)
+        return await this.fetch('oauth/token', params)
             .catch(error => error)
             .then((res: any) => {
             this.setToken(res.access_token); // Setting the token in localStorage
@@ -83,8 +82,9 @@ export default class AuthService {
     }
 
 
-    public fetch(endpoint: string, options?: any) {
+    public async fetch(endpoint: string, options?: any) {
         options = options || {};
+        const API_URL = getSiteConfig().data.api.baseUrl;
 
         // performs api calls sending the required authentication headers
         const headers: Headers = options.headers || new Headers();
@@ -95,13 +95,21 @@ export default class AuthService {
             headers.append('Authorization', 'Bearer ' + this.getToken());
             headers.append('client_id', getSiteConfig().data.api.clientId);
             headers.append('scope', 'authenticated');
+            headers.append('Access-Control-Allow-Origin', window.location.href);
+            headers.append('Access-Control-Allow-Credentials', 'true');
         }
 
-        return callApi(endpoint, {
+        return await fetch(`${API_URL}/${endpoint}`, {
             headers,
             ...options
         })
-            .catch(error => error)
-            .then(response => response);
+            .then(response => response.json().then(json => ({ json, response })))
+            .then(({ json, response }) => {
+                if (!response.ok) {
+                    return Promise.reject(json);
+                }
+
+                return json;
+            });
     }
 }

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {IPropsReduxBase} from "../../../../components/interfaces";
 import SaveCancelButtons from "../../../../components/widgets/SaveCancelButtons/SaveCancelButtons";
 import {addBookmarks} from "../../../../store/bookmark/actions";
-import {IAddBookmarksPayload, IBookmark} from "../../../../store/bookmark/types";
+import {IBookmark} from "../../../../store/bookmark/types";
 import {IBookmarkCategory} from "../../../../store/bookmarkCategory/types";
 import {getSiteConfig} from "../../../../store/siteConfig/actions";
 import {ISiteConfig} from "../../../../store/siteConfig/types";
@@ -32,9 +32,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
 
         this.state = {
             bookmarks: [{
-                href: 'http://',
-                id: 0,
-                label: '',
+                title: '',
+                uri: 'http://',
             }],
             formStateValues: {},
         };
@@ -59,24 +58,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         // todo: save state to the database.
         const formStateValues: string[] = this.state.formStateValues;
 
-        const payload: IAddBookmarksPayload = {data: [] as any, categoryId: this.props.category.id};
-
-        Object.keys(formStateValues).map((key: string) => {
-            if (key.indexOf('href') > -1) {
-                const labelKey = key.replace('href', 'label');
-
-                payload.data.push({
-                    meta: {
-                        href: formStateValues[key],
-                        id: 0,
-                        label: formStateValues[labelKey] || '',
-                    }
-                });
-            }
-        });
-
         if (this.props.dispatch) {
-            this.props.dispatch(await addBookmarks(payload));
+            this.props.dispatch(await addBookmarks(formStateValues, this.props.category));
         }
 
         this.props.handleSave();
@@ -86,9 +69,8 @@ class BookmarkFormWidget extends Component<IProps, IState> {
         event.preventDefault();
         const bookmarks = this.state.bookmarks;
         bookmarks.push({
-            href: 'http://',
-            id: 0,
-            label: '',
+            title: '',
+            uri: 'http://',
         });
         this.setState({bookmarks});
     }

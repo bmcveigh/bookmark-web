@@ -22,7 +22,7 @@ const BookmarkFormItem = (props: IProps) => (
             <FormField
                 label="URL"
                 name={`href--${props.bookmark ? props.bookmark.id : 'new'}`}
-                defaultValue={props.bookmark ? props.bookmark.href : 'http://'}
+                defaultValue={props.bookmark ? props.bookmark.uri : 'http://'}
                 placeholder="URL"
                 onChange={props.onChange}
             />

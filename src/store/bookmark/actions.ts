@@ -1,3 +1,4 @@
+import {IBookmarkCategory} from "../bookmarkCategory/types";
 import {
     ADD_BOOKMARKS,
     IAddBookmarksPayload,
@@ -13,9 +14,37 @@ export async function fetchBookmarks() {
     };
 }
 
-export async function addBookmarks(payload: IAddBookmarksPayload) {
+export async function addBookmarks(formStateValues: any, category: IBookmarkCategory) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const payload: IAddBookmarksPayload = {data: [] as any, categoryId: category.id};
+
+    Object.keys(formStateValues).map((key: string) => {
+        if (key.indexOf('href') > -1) {
+            const labelKey = key.replace('href', 'label');
+
+            payload.data.push({
+                meta: {
+                    link: {
+                        title: formStateValues[labelKey] || '',
+                        uri: formStateValues[key],
+                    },
+                    notes: '',
+                }
+            });
+        }
+    });
+
+    // Add a space when user clicks "Done" button.
+    const options = {
+        body: JSON.stringify(payload),
+        headers,
+        method: 'POST',
+    };
+
     return {
-        data: [], // todo: do a fetch to endpoint when available.
+        data: await Services.authService().fetch('api/v1/bookmark', options),
         type: ADD_BOOKMARKS
     }
 }
