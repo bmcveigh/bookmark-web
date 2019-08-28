@@ -18,5 +18,7 @@ export interface IBookmark {
 
 export interface IAddBookmarksPayload {
     categoryId: string | number;
-    data: IBookmark[];
+    data: [{
+        meta: IBookmark;
+    }];
 }

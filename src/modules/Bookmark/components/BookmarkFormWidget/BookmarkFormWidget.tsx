@@ -57,18 +57,20 @@ class BookmarkFormWidget extends Component<IProps, IState> {
      */
     public async handleSave() {
         // todo: save state to the database.
-        const formStateValues = this.state.formStateValues;
+        const formStateValues: string[] = this.state.formStateValues;
 
-        const payload: IAddBookmarksPayload = {data: [], categoryId: this.props.category.id};
+        const payload: IAddBookmarksPayload = {data: [] as any, categoryId: this.props.category.id};
 
         Object.keys(formStateValues).map((key: string) => {
             if (key.indexOf('href') > -1) {
                 const labelKey = key.replace('href', 'label');
 
                 payload.data.push({
-                    href: formStateValues[key],
-                    id: 0,
-                    label: formStateValues[labelKey] || '',
+                    meta: {
+                        href: formStateValues[key],
+                        id: 0,
+                        label: formStateValues[labelKey] || '',
+                    }
                 });
             }
         });
@@ -145,7 +147,7 @@ class BookmarkFormWidget extends Component<IProps, IState> {
                         onClick={this.handleClick}
                     >{this.siteConfig.data.labels.BOOKMARKS_ADD_BOOKMARK_LABEL}</a>
                 </div>
-                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave} />
+                <SaveCancelButtons handleCancel={this.handleCancel} handleSave={this.handleSave}/>
             </div>
         );
     }
