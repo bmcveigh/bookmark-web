@@ -5,7 +5,7 @@ export function getSiteConfig() {
         data: {
             api: {
                 baseUrl: process.env.API_URL,
-                clientId: '843a7ddc-113d-42f2-91dd-8495b4f40c29',
+                clientId: '1ce0b739-acea-4101-a56b-9c98bd1cf6fb',
             },
             labels: {
                 "BOOKMARKS_ADD_BOOKMARK_LABEL": 'Add bookmark',

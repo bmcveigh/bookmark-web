@@ -94,7 +94,7 @@ export default class AuthService {
         if (this.loggedIn()) {
             headers.append('Authorization', 'Bearer ' + this.getToken());
             headers.append('client_id', getSiteConfig().data.api.clientId);
-            headers.append('scope', 'authenticated');
+            headers.append('scope', 'authenticated, basic_user');
             headers.append('Access-Control-Allow-Origin', window.location.href);
             headers.append('Access-Control-Allow-Credentials', 'true');
         }

@@ -3,6 +3,7 @@ import * as React from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import MainMenu from "../components/blocks/MainMenu/MainMenu";
 
+import BookmarkEditCategoryPage from 'src/modules/Bookmark/pages/BookmarkEditCategoryPage/BookmarkEditCategoryPage';
 import BookmarkListPage from "../modules/Bookmark/pages/BookmarkListPage/BookmarkListPage";
 import Homepage from "../modules/Homepage/containers/Homepage/Homepage";
 import UserThemeSettingsPage from "../modules/Theme/pages/UserThemeSettingsPage/UserThemeSettingsPage";
@@ -30,6 +31,7 @@ function Routes() {
                     <Route path="/user/register" exact={true} component={UserRegisterPage} />
                     <Route path="/app" exact={true} component={BookmarkListPage} />
                     <Route path="/app/space/*" exact={true} component={BookmarkListPage} />
+                    <Route path="/app/category/*/edit" exact={true} component={BookmarkEditCategoryPage} />
                     <Route path="/app/user/profile" exact={true} component={UserProfilePage} />
                     <Route path="/app/user/profile/appearance" exact={true} component={UserThemeSettingsPage} />
                 </div>
